@@ -14,14 +14,14 @@ Archive of Memes is a community-driven platform where the internet's best memes 
 
 ## 🚀 Quick Start
 
-1. Visit [nafureanu.com](https://nafureanu.com)
+1. Visit [archiveofmeme.fun](https://archiveofmeme.fun)
 2. Connect your Solana wallet
 3. Hold $ARCH tokens to vote
 4. Nominate and vote daily!
 
 ## 📄 Documentation
 
-- [Whitepaper](https://nafureanu.com/whitepaper.html)
+- [Whitepaper](https://archiveofmeme.fun/whitepaper.html)
 - [API Documentation](docs/api.md)
 - [Smart Contract](contracts/)
 
