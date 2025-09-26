@@ -3,58 +3,8 @@ const itemsPerPage = 9;
 let allArchives = [];
 let filteredArchives = [];
 
-const sampleArchives = [
-    {
-        date: '2024-09-24',
-        memes: [
-            { title: 'Wojak Thinking', votes: 567, nominator: '0x1234...5678', rank: 1 },
-            { title: 'Pepe Hands', votes: 445, nominator: '0xabcd...efgh', rank: 2 },
-            { title: 'Doge Wow', votes: 312, nominator: '0x9876...5432', rank: 3 }
-        ],
-        totalVotes: 1324,
-        participants: 89
-    },
-    {
-        date: '2024-09-23',
-        memes: [
-            { title: 'Galaxy Brain', votes: 689, nominator: '0xaaaa...bbbb', rank: 1 },
-            { title: 'Drake Format', votes: 523, nominator: '0xcccc...dddd', rank: 2 },
-            { title: 'Stonks', votes: 412, nominator: '0xeeee...ffff', rank: 3 }
-        ],
-        totalVotes: 1624,
-        participants: 112
-    },
-    {
-        date: '2024-09-22',
-        memes: [
-            { title: 'This is Fine', votes: 789, nominator: '0x1111...2222', rank: 1 },
-            { title: 'Distracted Boyfriend', votes: 623, nominator: '0x3333...4444', rank: 2 },
-            { title: 'Woman Yelling at Cat', votes: 456, nominator: '0x5555...6666', rank: 3 }
-        ],
-        totalVotes: 1868,
-        participants: 145
-    },
-    {
-        date: '2024-09-21',
-        memes: [
-            { title: 'Surprised Pikachu', votes: 912, nominator: '0x7777...8888', rank: 1 },
-            { title: 'Expanding Brain', votes: 734, nominator: '0x9999...aaaa', rank: 2 },
-            { title: 'Mock SpongeBob', votes: 543, nominator: '0xbbbb...cccc', rank: 3 }
-        ],
-        totalVotes: 2189,
-        participants: 167
-    },
-    {
-        date: '2024-09-20',
-        memes: [
-            { title: 'Big Brain Time', votes: 654, nominator: '0xdddd...eeee', rank: 1 },
-            { title: 'Always Has Been', votes: 543, nominator: '0xffff...0000', rank: 2 },
-            { title: 'Panik Kalm Panik', votes: 432, nominator: '0x1122...3344', rank: 3 }
-        ],
-        totalVotes: 1629,
-        participants: 98
-    }
-];
+// Archives will be loaded from the API
+const sampleArchives = [];
 
 function init() {
     loadArchives();
@@ -82,10 +32,40 @@ function setupEventListeners() {
     });
 }
 
-function loadArchives() {
-    allArchives = sampleArchives;
-    filteredArchives = [...allArchives];
-    renderArchives();
+async function loadArchives() {
+    try {
+        // TODO: Fetch real archives from API
+        // const response = await fetch('/api/get-archives.php');
+        // const data = await response.json();
+        // allArchives = data.archives || [];
+
+        // For now, use empty array
+        allArchives = sampleArchives;
+        filteredArchives = [...allArchives];
+        renderArchives();
+
+        // Show message if no archives yet
+        if (allArchives.length === 0) {
+            const grid = document.getElementById('archiveGrid');
+            grid.innerHTML = `
+                <div class="loading-state" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                    <p style="font-size: 1.3rem; color: var(--color-ink); font-family: var(--font-heading); margin-bottom: 20px;">
+                        🚀 No archives yet!
+                    </p>
+                    <p style="color: var(--color-ink-light); font-family: var(--font-body);">
+                        The first time capsule will be created at 20:00 UTC today.
+                    </p>
+                    <p style="color: var(--color-ink-light); font-family: var(--font-body); margin-top: 10px;">
+                        Come back after the first voting cycle!
+                    </p>
+                </div>
+            `;
+        }
+    } catch (error) {
+        console.error('Error loading archives:', error);
+        const grid = document.getElementById('archiveGrid');
+        grid.innerHTML = '<div class="loading-state"><p>Error loading archives</p></div>';
+    }
 }
 
 function applyFilters() {

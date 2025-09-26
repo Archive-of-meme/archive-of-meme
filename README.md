@@ -35,9 +35,8 @@ Archive of Memes is a community-driven platform where the internet's best memes 
 
 ## 🤝 Community
 
-- X: [@ArchiveOfMeme](https://X.com/ArchiveOfMeme)
-- Telegram: [t.me/ArchiveOfMeme](https://t.me/ArchiveOfMeme)
-- Discord: [Join our Discord](https://discord.gg/archiveofmeme)
+- X: [@ArchiveOfMeme](https://x.com/ArchiveOfMeme)
+- GitHub: [github.com/Archive-of-meme](https://github.com/Archive-of-meme)
 
 ## 📊 Token Information
 

@@ -308,6 +308,7 @@
         </div>
         <ul class="nav-menu">
           <li><a href="index.html">Home</a></li>
+          <li><a href="arch.html">Arch</a></li>
           <li><a href="nominate.html" class="active">Nominate</a></li>
           <li><a href="vote.html">Vote</a></li>
           <li><a href="archive.html">Archive</a></li>
@@ -478,72 +479,9 @@
       <div class="container">
         <h2 class="section-title">🎯 Today's Nominations</h2>
         <div class="nominations-grid" id="nominationsGrid">
-          <!-- Example cards - these would be loaded dynamically -->
-          <div class="nomination-card">
-            <div
-              style="
-                width: 100%;
-                height: 200px;
-                background: var(--color-paper);
-                border-bottom: 3px solid var(--color-ink);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: var(--font-sketch);
-                color: var(--color-ink-light);
-              "
-            >
-              [Meme Image]
-            </div>
-            <div class="nomination-info">
-              <div class="nomination-title">Wojak at McDonald's</div>
-              <div class="nomination-meta">by 0x1234...5678</div>
-              <div class="nomination-time">2 hours ago</div>
-            </div>
-          </div>
-          <div class="nomination-card">
-            <div
-              style="
-                width: 100%;
-                height: 200px;
-                background: var(--color-paper);
-                border-bottom: 3px solid var(--color-ink);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: var(--font-sketch);
-                color: var(--color-ink-light);
-              "
-            >
-              [Meme Image]
-            </div>
-            <div class="nomination-info">
-              <div class="nomination-title">This is Fine 2025</div>
-              <div class="nomination-meta">by 0xabcd...efgh</div>
-              <div class="nomination-time">3 hours ago</div>
-            </div>
-          </div>
-          <div class="nomination-card">
-            <div
-              style="
-                width: 100%;
-                height: 200px;
-                background: var(--color-paper);
-                border-bottom: 3px solid var(--color-ink);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: var(--font-sketch);
-                color: var(--color-ink-light);
-              "
-            >
-              [Meme Image]
-            </div>
-            <div class="nomination-info">
-              <div class="nomination-title">Pepe the Philosopher</div>
-              <div class="nomination-meta">by 0x9876...5432</div>
-              <div class="nomination-time">5 hours ago</div>
-            </div>
+          <!-- Nominations will be loaded here dynamically -->
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--color-ink-light); font-family: var(--font-sketch); font-size: 1.2rem;">
+            <p>Loading today's nominations...</p>
           </div>
         </div>
       </div>
@@ -556,16 +494,18 @@
           a time.
         </p>
         <div class="footer-links">
-          <a href="#">X</a>
-          <a href="#">Discord</a>
-          <a href="#">GitHub</a>
+          <a href="https://x.com" target="_blank">X</a>
+          <a href="https://github.com/Archive-of-meme" target="_blank">GitHub</a>
         </div>
       </div>
     </footer>
 
     <div class="arch-decoration" title="Hi! I'm Arch!"></div>
 
+    <!-- Solana Web3.js for Phantom integration -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <script src="js/arch-random.js"></script>
+    <script src="js/phantom-integration.js"></script>
     <script src="js/wallet-simple.js"></script>
     <script>
       // File upload handling
@@ -684,7 +624,8 @@
           // Check if wallet is connected
           // IMPORTANT: According to whitepaper, you need wallet to nominate (but NOT $ARCH)
           // Only voting requires $ARCH tokens
-          if (!walletUtils.getAddress()) {
+          const walletAddress = localStorage.getItem('testWallet') || (window.phantomWallet && window.phantomWallet.address);
+          if (!walletAddress) {
             showNotification(
               "Please connect your wallet to nominate (no $ARCH required)",
               "warning"
@@ -707,39 +648,212 @@
             return;
           }
 
-          // Here you would submit to your backend
-          console.log("Submitting nomination:", {
-            title,
-            url,
-            source,
-            context,
-            file,
-          });
+          // Prepare form data for submission
+          const formData = new FormData();
+          formData.append('title', title);
+          formData.append('wallet', walletAddress);
 
-          showNotification("Meme nominated successfully!", "success");
+          if (file) {
+            formData.append('image', file);
+          } else if (url) {
+            formData.append('imageUrl', url);
+          }
 
-          // Reset form
-          document.getElementById("memeForm").reset();
-          removePreview();
+          if (source) formData.append('source', source);
+          if (context) formData.append('context', context);
+
+          // Show loading state
+          const submitBtn = document.getElementById('submitBtn');
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = 'Submitting...';
+          submitBtn.disabled = true;
+
+          try {
+            const response = await fetch('/api/nominate.php', {
+              method: 'POST',
+              body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+              showNotification("Meme nominated successfully! 🎉", "success");
+
+              // Reset form
+              document.getElementById("memeForm").reset();
+              removePreview();
+
+              // Reload nominations
+              setTimeout(() => {
+                loadTodaysNominations();
+              }, 1000);
+            } else {
+              showNotification(result.error || "Failed to nominate meme", "error");
+            }
+          } catch (error) {
+            console.error('Nomination error:', error);
+            showNotification("Error submitting nomination. Please try again.", "error");
+          } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }
         });
 
-      // Check phase and disable form if not in nomination phase
+      // Check phase and show current phase info
       function checkPhase() {
         const now = new Date();
         const utcHour = now.getUTCHours();
+        const utcMinute = now.getUTCMinutes();
 
-        if (utcHour >= 16) {
-          // Not in nomination phase
-          document.getElementById("nominateForm").style.opacity = "0.5";
-          document.getElementById("submitBtn").disabled = true;
-          document.getElementById("phaseWarning").classList.add("active");
+        // Display current UTC time for debugging
+        console.log(`Current UTC time: ${utcHour}:${utcMinute < 10 ? '0' : ''}${utcMinute}`);
+
+        let currentPhase;
+        let phaseMessage;
+
+        if (utcHour < 16) {
+          currentPhase = 'nomination';
+          phaseMessage = `✅ Nomination Phase (until 16:00 UTC)`;
+        } else if (utcHour < 20) {
+          currentPhase = 'voting';
+          phaseMessage = `🗳️ Voting Phase (until 20:00 UTC)`;
+        } else {
+          currentPhase = 'archive';
+          phaseMessage = `📦 Archive Phase (until 00:00 UTC)`;
+        }
+
+        // Show phase info in console
+        console.log(`Current phase: ${currentPhase} - ${phaseMessage}`);
+
+        // Update phase display if element exists
+        const phaseDisplay = document.getElementById('currentPhaseDisplay');
+        if (phaseDisplay) {
+          phaseDisplay.textContent = phaseMessage;
+        }
+
+        // For production: only allow nominations during nomination phase
+        // But we'll show a warning instead of completely disabling
+        if (currentPhase !== 'nomination') {
+          const warningDiv = document.getElementById('phaseWarning');
+          if (warningDiv) {
+            warningDiv.innerHTML = `
+              <div style="background: #fff3cd; border: 2px solid #856404; padding: 15px; margin: 20px 0; border-radius: 10px;">
+                <strong>⚠️ Note:</strong> Currently in ${currentPhase} phase.
+                Nominations will open again at 00:00 UTC.
+                <br>Your submission will still be processed for testing purposes.
+              </div>
+            `;
+          }
         }
       }
+
+      // Show notification
+      function showNotification(message, type = 'info') {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.textContent = message;
+        notification.style.cssText = `
+          position: fixed;
+          top: 80px;
+          right: 20px;
+          left: auto;
+          max-width: 400px;
+          padding: 15px 20px;
+          background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : type === 'warning' ? '#ffc107' : '#17a2b8'};
+          color: white;
+          border: 3px solid #000;
+          border-radius: 10px;
+          box-shadow: 4px 4px 0px #000;
+          z-index: 10000;
+          transform: translateX(0);
+          font-family: var(--font-body);
+        `;
+
+        document.body.appendChild(notification);
+
+        // Remove after 3 seconds
+        setTimeout(() => {
+          notification.style.animation = 'slideOut 0.3s ease-out';
+          setTimeout(() => notification.remove(), 300);
+        }, 3000);
+      }
+
+      // Load today's nominations
+      async function loadTodaysNominations() {
+        try {
+          const response = await fetch('/api/get-todays-memes.php');
+          const data = await response.json();
+
+          const grid = document.getElementById('nominationsGrid');
+          if (!grid) return;
+
+          if (data.success && data.memes && data.memes.length > 0) {
+            grid.innerHTML = data.memes.map(meme => `
+              <div class="nomination-card">
+                <div style="width: 100%; height: 200px; overflow: hidden; background: var(--color-paper); border-bottom: 3px solid var(--color-ink);">
+                  ${meme.image_url ?
+                    `<img src="${meme.image_url}" alt="${meme.title}" style="width: 100%; height: 100%; object-fit: cover;">` :
+                    `<div style="display: flex; align-items: center; justify-content: center; height: 100%; font-family: var(--font-sketch); color: var(--color-ink-light);">[No Image]</div>`
+                  }
+                </div>
+                <div class="nomination-info">
+                  <div class="nomination-title">${meme.title || 'Untitled'}</div>
+                  <div class="nomination-meta">by ${meme.nominator_wallet ? meme.nominator_wallet.slice(0, 6) + '...' + meme.nominator_wallet.slice(-4) : 'Unknown'}</div>
+                  <div class="nomination-time">${meme.nomination_time || 'Just now'}</div>
+                </div>
+              </div>
+            `).join('');
+          } else {
+            grid.innerHTML = `
+              <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--color-ink-light); font-family: var(--font-sketch);">
+                No nominations yet today. Be the first to nominate a meme!
+              </div>
+            `;
+          }
+        } catch (error) {
+          console.error('Error loading nominations:', error);
+        }
+      }
+
+      // Add CSS animation styles
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideIn {
+          from {
+            transform: translateX(400px);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        @keyframes slideOut {
+          from {
+            transform: translateX(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateX(400px);
+            opacity: 0;
+          }
+        }
+        .notification {
+          animation: slideIn 0.3s ease-out forwards;
+        }
+      `;
+      document.head.appendChild(style);
 
       // Check phase on load
       checkPhase();
       // Check phase every minute
       setInterval(checkPhase, 60000);
+
+      // Load nominations on page load
+      loadTodaysNominations();
+      // Refresh nominations every 30 seconds
+      setInterval(loadTodaysNominations, 30000);
     </script>
   </body>
 </html>

@@ -146,7 +146,7 @@ The internet forgets fast. Memes are born, go viral, and disappear without conte
 ### Month 2:
 
 - Weekly Canon
-- Telegram/X bot
+- X bot
 - Embeds
 
 ### Month 3+:
@@ -161,7 +161,7 @@ The internet forgets fast. Memes are born, go viral, and disappear without conte
 
 - **Aesthetic**: "Classic archive" + pencil sketch style (Arch character)
 - **Consistent copy**: _"Archive it or it didn't happen"_ / _"Memes fade. Archives don't"_
-- **Daily ritual**: ARCH-YYYY-MM-DD mosaic with 3 pieces → shared on X/Telegram
+- **Daily ritual**: ARCH-YYYY-MM-DD mosaic with 3 pieces → shared on X
 
 ---
 

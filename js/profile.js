@@ -2,8 +2,37 @@ let isConnected = false;
 let currentTab = 'nominations';
 
 function init() {
+    // Force all values to 0 on page load to prevent cached data
+    resetAllValues();
     setupEventListeners();
     checkWalletConnection();
+}
+
+function resetAllValues() {
+    // Force reset all values to 0 on page load
+    const balanceElement = document.getElementById('archBalance');
+    if (balanceElement) {
+        balanceElement.textContent = '0';
+    }
+
+    // Reset all stat numbers
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach(stat => {
+        stat.textContent = '0';
+    });
+
+    // Ensure all badges are locked
+    const badges = document.querySelectorAll('.badge');
+    badges.forEach(badge => {
+        if (!badge.classList.contains('locked')) {
+            badge.classList.add('locked');
+        }
+        // Change icon to lock if not already
+        const icon = badge.querySelector('.badge-icon');
+        if (icon && icon.textContent !== '🔒') {
+            icon.textContent = '🔒';
+        }
+    });
 }
 
 function setupEventListeners() {
@@ -21,40 +50,69 @@ function checkWalletConnection() {
 }
 
 
-function showProfile(walletAddress) {
+// Make showProfile global so wallet-simple.js can call it
+window.showProfile = function(walletAddress) {
     isConnected = true;
 
-    document.getElementById('notConnected').style.display = 'none';
-    document.getElementById('profileContent').style.display = 'block';
+    const notConnected = document.getElementById('notConnected');
+    const profileContent = document.getElementById('profileContent');
 
-    const shortAddress = `${walletAddress.slice(0, 4)}...${walletAddress.slice(-4)}`;
-    document.getElementById('profileWallet').textContent = shortAddress;
+    if (notConnected) {
+        notConnected.style.display = 'none';
+    }
+    if (profileContent) {
+        profileContent.style.display = 'block';
+    }
+
+    const profileWallet = document.getElementById('profileWallet');
+    if (profileWallet && walletAddress) {
+        const shortAddress = `${walletAddress.slice(0, 4)}...${walletAddress.slice(-4)}`;
+        profileWallet.textContent = shortAddress;
+    }
 
     loadProfileData(walletAddress);
 }
 
 async function loadProfileData(walletAddress) {
-    const mockBalance = Math.floor(Math.random() * 10000);
-    document.getElementById('archBalance').textContent = mockBalance.toLocaleString();
+    // In production, this would fetch real data from the backend
+    // For now, ALWAYS show 0 values - no mock data
+    const balanceElement = document.getElementById('archBalance');
+    if (balanceElement) {
+        balanceElement.textContent = '0';
+        balanceElement.innerHTML = '0'; // Force update
+    }
 
+    // Show current date as member since (new member)
     const joinDate = new Date();
-    joinDate.setDate(joinDate.getDate() - Math.floor(Math.random() * 365));
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const memberSince = `${monthNames[joinDate.getMonth()]} ${joinDate.getFullYear()}`;
-    document.getElementById('memberSince').textContent = memberSince;
+    const memberElement = document.getElementById('memberSince');
+    if (memberElement) {
+        memberElement.textContent = memberSince;
+    }
 
-    updateBadges(walletAddress);
+    // Also update any stat cards to ensure they show 0
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach(stat => {
+        if (stat.id !== 'memberSince') {
+            stat.textContent = '0';
+            stat.innerHTML = '0';
+        }
+    });
+
+    // Don't unlock any badges randomly - keep them locked until user actually earns them
+    // updateBadges(walletAddress); // Commented out - no random unlocking
     loadActivityData();
 }
 
 function updateBadges(walletAddress) {
+    // In production, this would check real achievements from the backend
+    // For now, keep all badges locked until user actually earns them
     const badges = document.querySelectorAll('.badge');
-    const unlockedBadges = Math.floor(Math.random() * 3) + 1;
 
-    badges.forEach((badge, index) => {
-        if (index < unlockedBadges) {
-            badge.classList.remove('locked');
-        }
+    // Don't randomly unlock badges - they should be earned
+    badges.forEach((badge) => {
+        badge.classList.add('locked'); // Ensure all remain locked
     });
 }
 

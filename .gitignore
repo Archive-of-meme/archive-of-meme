@@ -1,4 +1,5 @@
 # Configuration files with sensitive data
+api/config.php
 api/pinata-config.php
 api/config-production.php
 

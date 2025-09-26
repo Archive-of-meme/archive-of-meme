@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arch - The Guardian of Memes | Archive of Meme</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #fff8dc 0%, #ffe4b5 100%);
+        min-height: 100vh;
+      }
+
+      .arch-hero {
+        position: relative;
+        padding: 100px 20px;
+        text-align: center;
+        overflow: visible;
+        background:
+          radial-gradient(ellipse at top left, rgba(255, 193, 7, 0.12) 0%, transparent 50%),
+          radial-gradient(ellipse at bottom right, rgba(255, 193, 7, 0.12) 0%, transparent 50%),
+          linear-gradient(180deg,
+            #FAF8F3 0%,
+            #F5F1E8 15%,
+            #EDE8DC 50%,
+            #F5F1E8 85%,
+            #FAF8F3 100%
+          );
+        border: 4px solid var(--color-ink);
+        border-radius: 15px;
+        box-shadow:
+          inset 0 0 80px rgba(139, 69, 19, 0.08),
+          0 10px 40px rgba(0, 0, 0, 0.15);
+        margin-bottom: 60px;
+        position: relative;
+      }
+
+      .arch-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(139, 69, 19, 0.02) 3px,
+            rgba(139, 69, 19, 0.02) 6px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 3px,
+            rgba(139, 69, 19, 0.02) 3px,
+            rgba(139, 69, 19, 0.02) 6px
+          );
+        pointer-events: none;
+        opacity: 0.5;
+        border-radius: 15px;
+      }
+
+      /* Ancient corner decorations */
+      .arch-hero::after {
+        content: "🏛️";
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        font-size: 2.5rem;
+        opacity: 0.2;
+        animation: floatSlow 6s ease-in-out infinite;
+      }
+
+      @keyframes floatSlow {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-8px) rotate(5deg); }
+      }
+
+      /* Ancient ornaments */
+      .ancient-ornament {
+        position: absolute;
+        font-size: 2.2rem;
+        opacity: 0.25;
+        animation: floatSlow 6s ease-in-out infinite;
+        z-index: 1;
+      }
+
+      .ancient-ornament.top-right {
+        top: 30px;
+        right: 30px;
+        animation-delay: 1s;
+      }
+
+      .ancient-ornament.bottom-left {
+        bottom: 30px;
+        left: 30px;
+        animation-delay: 2s;
+      }
+
+      .ancient-ornament.bottom-right {
+        bottom: 30px;
+        right: 30px;
+        animation-delay: 3s;
+      }
+
+      .arch-main-logo {
+        width: 200px;
+        height: 200px;
+        animation: float 3s ease-in-out infinite;
+        position: relative;
+        z-index: 2;
+        filter: drop-shadow(5px 5px 0px var(--color-ink));
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .arch-title {
+        font-family: var(--font-heading);
+        font-size: 4rem;
+        color: var(--color-ink);
+        text-shadow: 4px 4px 0px var(--color-gold);
+        margin: 30px 0;
+        transform: rotate(-2deg);
+        animation: wobble 5s ease-in-out infinite;
+      }
+
+      @keyframes wobble {
+        0%, 100% {
+          transform: rotate(-2deg);
+        }
+        50% {
+          transform: rotate(2deg);
+        }
+      }
+
+      .arch-subtitle {
+        font-family: var(--font-sketch);
+        font-size: 1.5rem;
+        color: var(--color-ink-light);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .arch-info-section {
+        max-width: 1200px;
+        margin: 80px auto;
+        padding: 0 20px;
+      }
+
+      .arch-story {
+        background: var(--color-white);
+        border: 4px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 40px;
+        margin-bottom: 60px;
+        box-shadow: 5px 5px 0px var(--color-ink);
+        transform: rotate(0.5deg);
+      }
+
+      .arch-story h2 {
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        color: var(--color-ink);
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 0px var(--color-accent);
+      }
+
+      .arch-story p {
+        font-family: var(--font-body);
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--color-ink);
+        margin-bottom: 15px;
+      }
+
+      .emoji-showcase {
+        background: var(--color-paper);
+        border: 4px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 40px;
+        margin-bottom: 60px;
+        box-shadow: 5px 5px 0px var(--color-ink);
+        transform: rotate(-0.5deg);
+      }
+
+      .emoji-showcase h2 {
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        color: var(--color-ink);
+        text-align: center;
+        margin-bottom: 40px;
+        text-shadow: 2px 2px 0px var(--color-gold);
+      }
+
+      .emoji-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .emoji-card {
+        background: var(--color-white);
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 3px 3px 0px var(--color-ink);
+        transform: rotate(0deg);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .emoji-card:hover {
+        transform: translate(-5px, -5px) rotate(5deg) scale(1.1);
+        box-shadow: 8px 8px 0px var(--color-ink);
+        background: var(--color-gold);
+      }
+
+      .emoji-card img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+
+      .emoji-card:hover img {
+        transform: scale(1.2) rotate(10deg);
+      }
+
+      .emoji-card-label {
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        color: var(--color-ink);
+        margin-top: 10px;
+        font-size: 0.9rem;
+      }
+
+      .emoji-card::after {
+        display: none; /* Removed click text since we have buttons now */
+      }
+
+      /* Gallery Styles */
+      .gallery-showcase {
+        background: var(--color-white);
+        border: 4px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 40px;
+        margin-bottom: 60px;
+        box-shadow: 5px 5px 0px var(--color-ink);
+        transform: rotate(-0.3deg);
+      }
+
+      .gallery-showcase h2 {
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        color: var(--color-ink);
+        text-align: center;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 0px var(--color-accent);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .gallery-card {
+        background: var(--color-paper);
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 3px 3px 0px var(--color-ink);
+        transform: rotate(0deg);
+      }
+
+      .gallery-card:hover {
+        transform: translate(-3px, -3px) rotate(1deg) scale(1.05);
+        box-shadow: 6px 6px 0px var(--color-ink);
+        background: var(--color-white);
+      }
+
+      .gallery-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: contain;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        background: white;
+        padding: 10px;
+      }
+
+      .gallery-card-label {
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        color: var(--color-ink);
+        margin-bottom: 10px;
+        font-size: 1rem;
+      }
+
+      .gallery-buttons {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+      }
+
+      .btn-download, .btn-copy {
+        padding: 5px 10px;
+        border: 2px solid var(--color-ink);
+        border-radius: 8px;
+        font-family: var(--font-sketch);
+        font-weight: 600;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex: 1;
+      }
+
+      .btn-download {
+        background: var(--color-gold);
+        color: var(--color-ink);
+      }
+
+      .btn-download:hover {
+        background: var(--color-accent);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .btn-copy {
+        background: var(--color-white);
+        color: var(--color-ink);
+      }
+
+      .btn-copy:hover {
+        background: var(--color-ink);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* Gallery Section Spacing */
+      .gallery-section {
+        margin-bottom: 60px;
+      }
+
+      /* Gallery Tabs */
+      .gallery-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 30px;
+      }
+
+      .gallery-tab {
+        padding: 12px 24px;
+        background: var(--color-white);
+        border: 3px solid var(--color-ink);
+        border-radius: 12px;
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--color-ink);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .gallery-tab:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 0px var(--color-ink);
+      }
+
+      .gallery-tab.active {
+        background: var(--color-accent);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 0px var(--color-ink);
+      }
+
+      .gallery-content {
+        display: none;
+      }
+
+      .gallery-content.active {
+        display: block;
+      }
+
+      /* Image Modal */
+      .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        animation: fadeIn 0.3s;
+      }
+
+      .image-modal.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content {
+        position: relative;
+        background: var(--color-paper);
+        padding: 20px;
+        border: 4px solid var(--color-ink);
+        border-radius: 20px;
+        max-width: 90%;
+        max-height: 90%;
+        animation: slideIn 0.3s;
+      }
+
+      .modal-content img {
+        max-width: 100%;
+        max-height: 70vh;
+        display: block;
+        margin: 0 auto;
+        border-radius: 10px;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color: var(--color-ink);
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .modal-close:hover {
+        color: var(--color-accent);
+        transform: scale(1.2);
+      }
+
+      .modal-caption {
+        text-align: center;
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        color: var(--color-ink);
+        margin: 15px 0;
+      }
+
+      .modal-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 15px;
+      }
+
+      .modal-buttons button {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Gallery card hover effect for clickable images */
+      .gallery-card img, .emoji-card img {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .gallery-card img:hover, .emoji-card img:hover {
+        transform: scale(1.02);
+      }
+
+      /* See More/Less Card Styles */
+      .see-more-card, .see-less-card {
+        background: linear-gradient(135deg, var(--color-gold), var(--color-accent));
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 250px;
+        transition: all 0.3s ease;
+      }
+
+      .see-more-card:hover, .see-less-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .see-less-card {
+        background: linear-gradient(135deg, var(--color-accent), var(--color-gold));
+      }
+
+      .see-more-content {
+        text-align: center;
+        color: white;
+      }
+
+      .see-more-icon {
+        font-size: 3rem;
+        margin-bottom: 10px;
+      }
+
+      .see-more-text {
+        font-family: var(--font-heading);
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+      }
+
+      .gallery-hidden, .emoji-hidden {
+        display: contents;
+      }
+
+      .gallery-hidden.collapsed, .emoji-hidden.collapsed {
+        display: none !important;
+      }
+
+      /* Updated emoji card styles to match gallery */
+      .emoji-card .gallery-buttons {
+        margin-top: 10px;
+      }
+
+      .arch-powers {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      .power-card {
+        background: var(--color-white);
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 30px;
+        text-align: center;
+        box-shadow: 4px 4px 0px var(--color-ink);
+        transform: rotate(calc(var(--power-rotate, 0) * 1deg));
+        transition: all 0.3s ease;
+      }
+
+      .power-card:nth-child(1) { --power-rotate: -1; }
+      .power-card:nth-child(2) { --power-rotate: 1; }
+      .power-card:nth-child(3) { --power-rotate: -0.5; }
+
+      .power-card:hover {
+        transform: translate(-3px, -3px) rotate(0deg);
+        box-shadow: 7px 7px 0px var(--color-ink);
+        background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-accent) 100%);
+      }
+
+      .power-card:hover .power-title,
+      .power-card:hover .power-desc {
+        color: var(--color-white);
+      }
+
+      .power-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        animation: spin-slow 10s linear infinite;
+      }
+
+      @keyframes spin-slow {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .power-card:hover .power-icon {
+        animation: spin-fast 1s linear infinite;
+      }
+
+      @keyframes spin-fast {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .power-title {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        color: var(--color-ink);
+        margin-bottom: 10px;
+      }
+
+      .power-desc {
+        font-family: var(--font-sketch);
+        color: var(--color-ink-light);
+        line-height: 1.6;
+      }
+
+      .arch-cta {
+        background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-accent) 100%);
+        color: var(--color-white);
+        padding: 60px 20px;
+        text-align: center;
+        margin-top: 80px;
+        border-top: 5px solid var(--color-ink);
+        border-bottom: 5px solid var(--color-ink);
+      }
+
+      .arch-cta h2 {
+        font-family: var(--font-heading);
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 3px 3px 0px var(--color-ink);
+      }
+
+      .arch-cta p {
+        font-family: var(--font-sketch);
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .cta-btn {
+        padding: 15px 30px;
+        background: var(--color-white);
+        color: var(--color-ink);
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        font-family: var(--font-heading);
+        font-size: 1.3rem;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 3px 3px 0px var(--color-ink);
+        transition: all 0.3s ease;
+        transform: rotate(-1deg);
+      }
+
+      .cta-btn:hover {
+        transform: translate(-3px, -3px) rotate(1deg);
+        box-shadow: 6px 6px 0px var(--color-ink);
+        background: var(--color-gold);
+      }
+
+      .floating-arch {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 1;
+        animation: float-around 20s linear infinite;
+      }
+
+      @keyframes float-around {
+        0% {
+          transform: translate(0, 100vh) rotate(0deg);
+        }
+        25% {
+          transform: translate(90vw, 75vh) rotate(90deg);
+        }
+        50% {
+          transform: translate(80vw, 0) rotate(180deg);
+        }
+        75% {
+          transform: translate(10vw, 25vh) rotate(270deg);
+        }
+        100% {
+          transform: translate(0, 100vh) rotate(360deg);
+        }
+      }
+
+      .copied-notification {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--color-accent);
+        color: white;
+        padding: 20px 40px;
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        box-shadow: 5px 5px 0px var(--color-ink);
+        z-index: 1000;
+        display: none;
+        animation: pop-in 0.3s ease;
+      }
+
+      @keyframes pop-in {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      .copied-notification.show {
+        display: block;
+      }
+
+      .arch-facts {
+        background: var(--color-white);
+        border: 4px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 40px;
+        margin-bottom: 60px;
+        box-shadow: 5px 5px 0px var(--color-ink);
+        transform: rotate(-0.3deg);
+      }
+
+      .arch-facts h2 {
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        color: var(--color-ink);
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 0px var(--color-accent);
+      }
+
+      .facts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .fact-item {
+        background: var(--color-paper);
+        border: 2px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .fact-item:hover {
+        transform: scale(1.05);
+        background: var(--color-gold);
+      }
+
+      .fact-number {
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        color: var(--color-accent);
+        margin-bottom: 10px;
+      }
+
+      .fact-label {
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        color: var(--color-ink);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <a href="index.html" class="logo-link">
+            <img
+              src="assets/img/Logo.png"
+              alt="Archive of Meme"
+              class="logo"
+            />
+          </a>
+          <h1>Archive of Meme</h1>
+          <span class="token-badge">$ARCH</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="arch.html" class="active">Arch</a></li>
+          <li><a href="nominate.html">Nominate</a></li>
+          <li><a href="vote.html">Vote</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="whitepaper.html">Whitepaper</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+        <button class="wallet-btn" id="connectWallet">Connect Wallet</button>
+      </div>
+    </nav>
+
+    <section class="arch-hero">
+      <!-- Ancient ornaments -->
+      <div class="ancient-ornament top-right">⏳</div>
+      <div class="ancient-ornament bottom-left">📜</div>
+      <div class="ancient-ornament bottom-right">∞</div>
+
+      <img
+        src="assets/img/Logo.png"
+        alt="Arch - The Guardian"
+        class="arch-main-logo"
+      />
+      <h1 class="arch-title">Meet Arch</h1>
+      <p class="arch-subtitle">
+        Upload or share the memes you love. The community with $ARCH votes.
+        The 3 winners are saved forever on blockchain.
+      </p>
+    </section>
+
+    <div class="arch-info-section">
+      <div class="arch-story">
+        <h2>The Eternal Archive</h2>
+        <p>
+          <strong>Archive of Meme is not just another meme site.</strong> It's a permanent,
+          decentralized, and indelible archive. When a meme wins here, it gains eternal life.
+        </p>
+        <p>
+          <strong>Every day we write history with memes.</strong> They're our inside jokes,
+          our viral moments, our way of processing the world. Archive of Meme ensures
+          the best ones don't get lost in the infinite scroll.
+        </p>
+        <p>
+          <strong>Here, the community decides what deserves to be eternal.</strong> Your vote today is tomorrow's
+          museum. No censorship. No hidden algorithms. Just the collective voice preserving
+          the best of internet culture forever.
+        </p>
+      </div>
+
+      <!-- $ARCH Token Information -->
+      <div style="background: linear-gradient(135deg, #FFC107 0%, #FF6B6B 100%); border: 4px solid var(--color-ink); border-radius: var(--radius-sketch); padding: 40px; margin-bottom: 60px; box-shadow: 5px 5px 0px var(--color-ink); transform: rotate(0.3deg);">
+
+        <div style="text-align: center; margin-bottom: 40px;">
+          <h2 style="font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-white); text-shadow: 3px 3px 0px var(--color-ink); margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <img src="assets/img/emojis/ArchE1.png" alt="Arch" style="width: 2.5rem; height: 2.5rem; vertical-align: middle;">
+            $ARCH Token
+          </h2>
+          <p style="font-family: var(--font-sketch); font-size: 1.3rem; color: var(--color-white); text-shadow: 1px 1px 0px rgba(0,0,0,0.3);">
+            The governance token powering the Archive of Meme ecosystem
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px;">
+
+          <!-- Blockchain -->
+          <div style="text-align: center; padding: 20px; background: white; border: 3px solid var(--color-ink); border-radius: 15px; box-shadow: 3px 3px 0px var(--color-ink);">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">⚡</div>
+            <h3 style="font-family: var(--font-sketch); color: var(--color-ink); margin-bottom: 5px; font-weight: 700;">Blockchain</h3>
+            <p style="font-size: 1.4rem; font-weight: bold; color: var(--color-accent); font-family: var(--font-heading);">SOLANA</p>
+          </div>
+
+          <!-- Supply -->
+          <div style="text-align: center; padding: 20px; background: white; border: 3px solid var(--color-ink); border-radius: 15px; box-shadow: 3px 3px 0px var(--color-ink);">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">💰</div>
+            <h3 style="font-family: var(--font-sketch); color: var(--color-ink); margin-bottom: 5px; font-weight: 700;">Total Supply</h3>
+            <p style="font-size: 1.4rem; font-weight: bold; color: var(--color-accent); font-family: var(--font-heading);">1,000,000,000</p>
+          </div>
+
+          <!-- Holders -->
+          <div style="text-align: center; padding: 20px; background: white; border: 3px solid var(--color-ink); border-radius: 15px; box-shadow: 3px 3px 0px var(--color-ink);">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">👥</div>
+            <h3 style="font-family: var(--font-sketch); color: var(--color-ink); margin-bottom: 5px; font-weight: 700;">Min. to Vote</h3>
+            <p style="font-size: 1.4rem; font-weight: bold; color: var(--color-accent); font-family: var(--font-heading);">100 $ARCH</p>
+          </div>
+
+          <!-- Tax -->
+          <div style="text-align: center; padding: 20px; background: white; border: 3px solid var(--color-ink); border-radius: 15px; box-shadow: 3px 3px 0px var(--color-ink);">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🎯</div>
+            <h3 style="font-family: var(--font-sketch); color: var(--color-ink); margin-bottom: 5px; font-weight: 700;">Tax</h3>
+            <p style="font-size: 1.4rem; font-weight: bold; color: var(--color-accent); font-family: var(--font-heading);">0%</p>
+          </div>
+        </div>
+
+        <!-- Token Distribution -->
+        <div style="margin: 30px 0;">
+          <h3 style="text-align: center; font-family: var(--font-heading); color: white; font-size: 1.8rem; margin-bottom: 20px; text-shadow: 2px 2px 0px rgba(0,0,0,0.3);">
+            Token Distribution
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+            <div style="background: rgba(255,255,255,0.95); border: 3px solid var(--color-ink); border-radius: 12px; padding: 15px; text-align: center; transform: rotate(-1deg);">
+              <div style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-accent); font-weight: bold;">90%</div>
+              <div style="font-family: var(--font-sketch); color: var(--color-ink); font-weight: 700; font-size: 0.95rem;">Public Launch</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.95); border: 3px solid var(--color-ink); border-radius: 12px; padding: 15px; text-align: center; transform: rotate(0.5deg);">
+              <div style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-gold); font-weight: bold;">5%</div>
+              <div style="font-family: var(--font-sketch); color: var(--color-ink); font-weight: 700; font-size: 0.95rem;">Archive Treasury</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.95); border: 3px solid var(--color-ink); border-radius: 12px; padding: 15px; text-align: center; transform: rotate(-0.5deg);">
+              <div style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-gold); font-weight: bold;">5%</div>
+              <div style="font-family: var(--font-sketch); color: var(--color-ink); font-weight: 700; font-size: 0.95rem;">Curation Fund</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Token Utilities -->
+        <div style="margin: 30px 0;">
+          <h3 style="text-align: center; font-family: var(--font-heading); color: white; font-size: 1.8rem; margin-bottom: 20px; text-shadow: 2px 2px 0px rgba(0,0,0,0.3);">
+            What $ARCH Gives You
+          </h3>
+          <div style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3); border-radius: 12px; padding: 20px;">
+            <ul style="list-style: none; padding: 0; margin: 0; color: white; font-family: var(--font-body); line-height: 1.8;">
+              <li style="margin-bottom: 10px; position: relative;">
+                <span class="info-icon" data-tooltip="voting-rights">ⓘ</span>
+                <strong>Daily Voting Rights</strong> - Choose which memes become eternal
+                <div class="tooltip-content" id="voting-rights">
+                  <strong>How it works:</strong><br>
+                  • Voting Phase: 16:00-20:00 UTC daily<br>
+                  • Requirement: Minimum 100 $ARCH to vote<br>
+                  • Users vote for nominated memes<br>
+                  • Winner gets permanently archived on IPFS/blockchain<br>
+                  • Voting power: 1 wallet = 1 vote
+                </div>
+              </li>
+              <li style="margin-bottom: 10px; position: relative;">
+                <span class="info-icon" data-tooltip="governance">ⓘ</span>
+                <strong>Governance Power</strong> - Shape the Archive's future
+                <div class="tooltip-content" id="governance">
+                  <strong>Decision-making power:</strong><br>
+                  • Vote on protocol changes<br>
+                  • Modify phase schedules<br>
+                  • Adjust voting requirements<br>
+                  • Approve new features<br>
+                  • Decide treasury allocation
+                </div>
+              </li>
+              <li style="margin-bottom: 10px; position: relative;">
+                <span class="info-icon" data-tooltip="canon">ⓘ</span>
+                <strong>Canon Selection</strong> - Participate in weekly archive curation
+                <div class="tooltip-content" id="canon">
+                  <strong>Weekly curation:</strong><br>
+                  • Select best archived memes<br>
+                  • Create special "legendary" collections<br>
+                  • Vote for canon inclusion<br>
+                  • Elevated visibility for selected memes<br>
+                  • Permanent recognition status
+                </div>
+              </li>
+              <li style="margin-bottom: 10px; position: relative;">
+                <span class="info-icon" data-tooltip="builder">ⓘ</span>
+                <strong>Builder Access</strong> - API write access for developers
+                <div class="tooltip-content" id="builder">
+                  <strong>Developer features:</strong><br>
+                  • API write access<br>
+                  • Create nomination bots<br>
+                  • Build integrations<br>
+                  • Develop analysis tools<br>
+                  • Create alternative interfaces
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <style>
+          .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--color-ink);
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 8px;
+            cursor: help;
+            position: relative;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+          }
+
+          .info-icon:hover {
+            background: white;
+            transform: scale(1.1);
+          }
+
+          .tooltip-content {
+            position: absolute;
+            bottom: 100%;
+            left: 30px;
+            margin-bottom: 5px;
+            background: white;
+            color: var(--color-ink);
+            padding: 12px 15px;
+            border: 3px solid var(--color-ink);
+            border-radius: 12px;
+            box-shadow: 4px 4px 0px var(--color-ink);
+            width: 280px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            pointer-events: none;
+          }
+
+          .tooltip-content::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 20px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--color-ink) transparent transparent transparent;
+          }
+
+          .info-icon:hover + strong + .tooltip-content,
+          .info-icon:hover ~ .tooltip-content {
+            opacity: 1;
+            visibility: visible;
+          }
+
+          .tooltip-content strong {
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 5px;
+          }
+
+          @media (max-width: 768px) {
+            .tooltip-content {
+              width: 220px;
+              left: 10px;
+              font-size: 0.8rem;
+            }
+          }
+        </style>
+
+        <!-- Contract Address -->
+        <div style="background: var(--color-ink); color: white; padding: 20px; border-radius: 15px; margin-bottom: 30px; border: 3px solid white; box-shadow: 3px 3px 0px rgba(0,0,0,0.3);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <div style="flex: 1; min-width: 200px;">
+              <p style="font-family: var(--font-sketch); margin-bottom: 5px; opacity: 0.9; font-weight: 700;">CONTRACT ADDRESS:</p>
+              <p style="font-family: monospace; font-size: 0.95rem; word-break: break-all;" id="contractAddress">
+                DmE9nZs4LfNCtMUHZWckstSHvHFCusBdGwjhqJuYpump
+              </p>
+            </div>
+            <button onclick="copyContract()" style="background: white; color: var(--color-ink); border: 2px solid var(--color-ink); padding: 10px 20px; border-radius: 10px; font-family: var(--font-sketch); font-weight: bold; cursor: pointer; transition: all 0.2s; box-shadow: 2px 2px 0px var(--color-ink);">
+              📋 COPY
+            </button>
+          </div>
+        </div>
+
+        <!-- Buy Buttons -->
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://pump.fun/coin/DmE9nZs4LfNCtMUHZWckstSHvHFCusBdGwjhqJuYpump"
+             target="_blank"
+             style="background: linear-gradient(135deg, #9945FF, #14F195); color: white; border: 3px solid var(--color-ink); padding: 15px 25px; font-size: 1.1rem; border-radius: var(--radius-sketch); text-decoration: none; font-family: var(--font-heading); font-weight: bold; box-shadow: 3px 3px 0px var(--color-ink); transition: all 0.2s; display: inline-block;">
+            🚀 Buy on Pump Fun
+          </a>
+          <a href="https://jup.ag/swap/SOL-DmE9nZs4LfNCtMUHZWckstSHvHFCusBdGwjhqJuYpump"
+             target="_blank"
+             style="background: linear-gradient(135deg, #00FFA3, #03E1FF); color: white; border: 3px solid var(--color-ink); padding: 15px 25px; font-size: 1.1rem; border-radius: var(--radius-sketch); text-decoration: none; font-family: var(--font-heading); font-weight: bold; box-shadow: 3px 3px 0px var(--color-ink); transition: all 0.2s; display: inline-block;">
+            🪐 Buy on Jupiter
+          </a>
+          <a href="https://dexscreener.com/solana/DmE9nZs4LfNCtMUHZWckstSHvHFCusBdGwjhqJuYpump"
+             target="_blank"
+             style="background: white; color: var(--color-ink); border: 3px solid var(--color-ink); padding: 15px 25px; font-size: 1.1rem; border-radius: var(--radius-sketch); text-decoration: none; font-family: var(--font-heading); font-weight: bold; box-shadow: 3px 3px 0px var(--color-ink); transition: all 0.2s; display: inline-block;">
+            📊 View Chart
+          </a>
+        </div>
+      </div>
+
+      <div class="arch-facts">
+        <h2>The Numbers That Matter</h2>
+        <div class="facts-grid">
+          <div class="fact-item">
+            <div class="fact-number">3</div>
+            <div class="fact-label">Daily Winners</div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-number">100</div>
+            <div class="fact-label">$ARCH to Vote</div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-number">100%</div>
+            <div class="fact-label">Decentralized</div>
+          </div>
+          <div class="fact-item">
+            <div class="fact-number">∞</div>
+            <div class="fact-label">Preserved Forever</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-powers">
+        <div class="power-card">
+          <img src="assets/img/emojis/ArchE1.png" alt="Time Keeper" class="power-icon" />
+          <h3 class="power-title">Daily Rewards</h3>
+          <p class="power-desc">
+            Every 24 hours, new opportunities. Nominate freely,
+            vote with 100+ $ARCH, win eternal glory and rewards
+          </p>
+        </div>
+        <div class="power-card">
+          <img src="assets/img/emojis/ArchE3.png" alt="Quality Guardian" class="power-icon" />
+          <h3 class="power-title">Permanent Storage</h3>
+          <p class="power-desc">
+            Winners get uploaded to IPFS & blockchain.
+            No deletion. No censorship. Your meme lives forever
+          </p>
+        </div>
+        <div class="power-card">
+          <img src="assets/img/emojis/ArchE5.png" alt="Community Voice" class="power-icon" />
+          <h3 class="power-title">True Democracy</h3>
+          <p class="power-desc">
+            Your $ARCH = Your voice. No algorithms, no shadowbans.
+            The community decides what becomes legendary
+          </p>
+        </div>
+      </div>
+
+      <!-- Gallery Section with Tabs -->
+      <div class="gallery-section">
+        <h2 style="text-align: center; font-family: var(--font-heading); font-size: 2.5rem; color: var(--color-ink); margin-bottom: 20px; text-shadow: 2px 2px 0px var(--color-accent);">Arch Collection</h2>
+
+        <!-- Tab Navigation -->
+        <div class="gallery-tabs">
+          <button class="gallery-tab active" onclick="switchGalleryTab('gallery')">$ARCH Gallery</button>
+          <button class="gallery-tab" onclick="switchGalleryTab('emojis')">Arch's Many Faces</button>
+        </div>
+
+        <!-- $ARCH Gallery Tab Content -->
+        <div class="gallery-content active" id="gallery-tab">
+          <p style="text-align: center; font-family: var(--font-sketch); color: var(--color-ink-light); margin-bottom: 30px;">
+            Download and share official $ARCH images and meme templates
+          </p>
+          <div class="gallery-grid">
+          <!-- Main Images -->
+          <div class="gallery-card">
+            <img src="assets/img/Logo.png" alt="$ARCH Logo" onclick="openImageModal('assets/img/Logo.png', '$ARCH Logo')" />
+            <div class="gallery-card-label">$ARCH Logo</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/Logo.png', 'ARCH_Logo.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/Logo.png', '$ARCH Logo')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/ArchiveOfMemeArch.png" alt="Archive of Meme Arch" onclick="openImageModal('assets/img/ArchiveOfMemeArch.png', 'Archive Arch')" />
+            <div class="gallery-card-label">Archive Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/ArchiveOfMemeArch.png', 'Archive_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/ArchiveOfMemeArch.png', 'Archive Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/ArchApproved.png" alt="Arch Approved" onclick="openImageModal('assets/img/ArchApproved.png', 'Arch Approved')" />
+            <div class="gallery-card-label">Arch Approved</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/ArchApproved.png', 'Arch_Approved.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/ArchApproved.png', 'Arch Approved')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/ArchArchived.png" alt="Arch Archived" onclick="openImageModal('assets/img/ArchArchived.png', 'Arch Archived')" />
+            <div class="gallery-card-label">Arch Archived</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/ArchArchived.png', 'Arch_Archived.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/ArchArchived.png', 'Arch Archived')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/ArchFunny.png" alt="Arch Funny" onclick="openImageModal('assets/img/ArchFunny.png', 'Arch Funny')" />
+            <div class="gallery-card-label">Arch Funny</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/ArchFunny.png', 'Arch_Funny.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/ArchFunny.png', 'Arch Funny')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/ArchPlayingWithBooks.png" alt="Arch Playing" onclick="openImageModal('assets/img/ArchPlayingWithBooks.png', 'Arch Playing')" />
+            <div class="gallery-card-label">Arch Playing</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/ArchPlayingWithBooks.png', 'Arch_Playing.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/ArchPlayingWithBooks.png', 'Arch Playing')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/ArchReadingABook.png" alt="Arch Reading" onclick="openImageModal('assets/img/ArchReadingABook.png', 'Arch Reading')" />
+            <div class="gallery-card-label">Arch Reading</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/ArchReadingABook.png', 'Arch_Reading.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/ArchReadingABook.png', 'Arch Reading')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/ArchReadingAJoke.png" alt="Arch Joke" onclick="openImageModal('assets/img/ArchReadingAJoke.png', 'Arch Joke')" />
+            <div class="gallery-card-label">Arch Joke</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/ArchReadingAJoke.png', 'Arch_Joke.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/ArchReadingAJoke.png', 'Arch Joke')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/SmileArch.png" alt="Smile Arch" onclick="openImageModal('assets/img/SmileArch.png', 'Smile Arch')" />
+            <div class="gallery-card-label">Smile Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/SmileArch.png', 'Smile_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/SmileArch.png', 'Smile Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <!-- See More Button -->
+          <div class="gallery-card see-more-card" id="seeMoreBtn" onclick="expandGallery()">
+            <div class="see-more-content">
+              <div class="see-more-icon">➕</div>
+              <div class="see-more-text">See More</div>
+            </div>
+          </div>
+
+          <!-- Hidden Gallery Items -->
+          <div class="gallery-hidden" id="hiddenGallery" style="display: none;">
+          <div class="gallery-card">
+            <img src="assets/img/WenArch.png" alt="Wen Arch" onclick="openImageModal('assets/img/WenArch.png', 'Wen Arch')" />
+            <div class="gallery-card-label">Wen Arch?</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/WenArch.png', 'Wen_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/WenArch.png', 'Wen Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/MultiArch.png" alt="Multi Arch" onclick="openImageModal('assets/img/MultiArch.png', 'Multi Arch')" />
+            <div class="gallery-card-label">Multi Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/MultiArch.png', 'Multi_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/MultiArch.png', 'Multi Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+
+          <!-- Meme Templates from mems folder -->
+          <div class="gallery-card">
+            <img src="assets/img/mems/ArchM1.png" alt="Arch Meme 1" onclick="openImageModal('assets/img/mems/ArchM1.png', 'Arch Meme 1')" />
+            <div class="gallery-card-label">Meme Template 1</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/mems/ArchM1.png', 'Arch_Meme_1.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/mems/ArchM1.png', 'Arch Meme 1')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/mems/ArchM2.png" alt="Arch Meme 2" onclick="openImageModal('assets/img/mems/ArchM2.png', 'Arch Meme 2')" />
+            <div class="gallery-card-label">Meme Template 2</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/mems/ArchM2.png', 'Arch_Meme_2.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/mems/ArchM2.png', 'Arch Meme 2')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/mems/ArchM3.png" alt="Arch Meme 3" onclick="openImageModal('assets/img/mems/ArchM3.png', 'Arch Meme 3')" />
+            <div class="gallery-card-label">Meme Template 3</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/mems/ArchM3.png', 'Arch_Meme_3.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/mems/ArchM3.png', 'Arch Meme 3')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/mems/ArchM4.png" alt="Arch Meme 4" onclick="openImageModal('assets/img/mems/ArchM4.png', 'Arch Meme 4')" />
+            <div class="gallery-card-label">Meme Template 4</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/mems/ArchM4.png', 'Arch_Meme_4.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/mems/ArchM4.png', 'Arch Meme 4')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/mems/ArchM5.png" alt="Arch Meme 5" onclick="openImageModal('assets/img/mems/ArchM5.png', 'Arch Meme 5')" />
+            <div class="gallery-card-label">Meme Template 5</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/mems/ArchM5.png', 'Arch_Meme_5.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/mems/ArchM5.png', 'Arch Meme 5')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/mems/ArchM6.png" alt="Arch Meme 6" onclick="openImageModal('assets/img/mems/ArchM6.png', 'Arch Meme 6')" />
+            <div class="gallery-card-label">Meme Template 6</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/mems/ArchM6.png', 'Arch_Meme_6.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/mems/ArchM6.png', 'Arch Meme 6')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="gallery-card">
+            <img src="assets/img/mems/ArchM7.png" alt="Arch Meme 7" onclick="openImageModal('assets/img/mems/ArchM7.png', 'Arch Meme 7')" />
+            <div class="gallery-card-label">Meme Template 7</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/mems/ArchM7.png', 'Arch_Meme_7.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/mems/ArchM7.png', 'Arch Meme 7')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+
+          <!-- See Less Button (at the end of expanded content) -->
+          <div class="gallery-card see-less-card" id="seeLessBtn" onclick="collapseGallery()" style="display: none;">
+            <div class="see-more-content">
+              <div class="see-more-icon">➖</div>
+              <div class="see-more-text">See Less</div>
+            </div>
+          </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Arch's Many Faces Tab Content -->
+        <div class="gallery-content" id="emojis-tab">
+          <p style="text-align: center; font-family: var(--font-sketch); color: var(--color-ink-light); margin-bottom: 30px;">
+            Express yourself with Arch emojis - perfect for Discord and social media
+          </p>
+          <div class="emoji-grid">
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE1.png" alt="Happy Arch" onclick="openImageModal('assets/img/emojis/ArchE1.png', 'Happy Arch')" />
+            <div class="emoji-card-label">Happy Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE1.png', 'Happy_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE1.png', 'Happy Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE2.png" alt="Excited Arch" onclick="openImageModal('assets/img/emojis/ArchE2.png', 'Excited Arch')" />
+            <div class="emoji-card-label">Excited Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE2.png', 'Excited_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE2.png', 'Excited Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE3.png" alt="Cool Arch" onclick="openImageModal('assets/img/emojis/ArchE3.png', 'Cool Arch')" />
+            <div class="emoji-card-label">Cool Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE3.png', 'Cool_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE3.png', 'Cool Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE4.png" alt="Thinking Arch" onclick="openImageModal('assets/img/emojis/ArchE4.png', 'Thinking Arch')" />
+            <div class="emoji-card-label">Thinking Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE4.png', 'Thinking_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE4.png', 'Thinking Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE5.png" alt="Laughing Arch" onclick="openImageModal('assets/img/emojis/ArchE5.png', 'Laughing Arch')" />
+            <div class="emoji-card-label">Laughing Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE5.png', 'Laughing_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE5.png', 'Laughing Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE6.png" alt="Surprised Arch" onclick="openImageModal('assets/img/emojis/ArchE6.png', 'Surprised Arch')" />
+            <div class="emoji-card-label">Surprised Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE6.png', 'Surprised_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE6.png', 'Surprised Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE7.png" alt="Winking Arch" onclick="openImageModal('assets/img/emojis/ArchE7.png', 'Winking Arch')" />
+            <div class="emoji-card-label">Winking Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE7.png', 'Winking_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE7.png', 'Winking Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE8.png" alt="Sleepy Arch" onclick="openImageModal('assets/img/emojis/ArchE8.png', 'Sleepy Arch')" />
+            <div class="emoji-card-label">Sleepy Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE8.png', 'Sleepy_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE8.png', 'Sleepy Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE9.png" alt="Party Arch" onclick="openImageModal('assets/img/emojis/ArchE9.png', 'Party Arch')" />
+            <div class="emoji-card-label">Party Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE9.png', 'Party_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE9.png', 'Party Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE10.png" alt="Love Arch" onclick="openImageModal('assets/img/emojis/ArchE10.png', 'Love Arch')" />
+            <div class="emoji-card-label">Love Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE10.png', 'Love_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE10.png', 'Love Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE11.png" alt="Smart Arch" onclick="openImageModal('assets/img/emojis/ArchE11.png', 'Smart Arch')" />
+            <div class="emoji-card-label">Smart Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE11.png', 'Smart_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE11.png', 'Smart Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+
+          <!-- See More Button for Emojis -->
+          <div class="emoji-card see-more-card" id="seeMoreBtnEmoji" onclick="expandEmojiGallery()">
+            <div class="see-more-content">
+              <div class="see-more-icon">➕</div>
+              <div class="see-more-text">See More</div>
+            </div>
+          </div>
+
+          <!-- Hidden Emoji Items -->
+          <div class="emoji-hidden" id="hiddenEmojis" style="display: none;">
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE12.png" alt="Curious Arch" onclick="openImageModal('assets/img/emojis/ArchE12.png', 'Curious Arch')" />
+            <div class="emoji-card-label">Curious Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE12.png', 'Curious_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE12.png', 'Curious Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE13.png" alt="Confident Arch" onclick="openImageModal('assets/img/emojis/ArchE13.png', 'Confident Arch')" />
+            <div class="emoji-card-label">Confident Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE13.png', 'Confident_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE13.png', 'Confident Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE14.png" alt="Studious Arch" onclick="openImageModal('assets/img/emojis/ArchE14.png', 'Studious Arch')" />
+            <div class="emoji-card-label">Studious Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE14.png', 'Studious_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE14.png', 'Studious Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE15.png" alt="Amazed Arch" onclick="openImageModal('assets/img/emojis/ArchE15.png', 'Amazed Arch')" />
+            <div class="emoji-card-label">Amazed Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE15.png', 'Amazed_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE15.png', 'Amazed Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE16.png" alt="Dreamy Arch" onclick="openImageModal('assets/img/emojis/ArchE16.png', 'Dreamy Arch')" />
+            <div class="emoji-card-label">Dreamy Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE16.png', 'Dreamy_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE16.png', 'Dreamy Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE17.png" alt="Focused Arch" onclick="openImageModal('assets/img/emojis/ArchE17.png', 'Focused Arch')" />
+            <div class="emoji-card-label">Focused Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE17.png', 'Focused_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE17.png', 'Focused Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE18.png" alt="Cheerful Arch" onclick="openImageModal('assets/img/emojis/ArchE18.png', 'Cheerful Arch')" />
+            <div class="emoji-card-label">Cheerful Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE18.png', 'Cheerful_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE18.png', 'Cheerful Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE19.png" alt="Playful Arch" onclick="openImageModal('assets/img/emojis/ArchE19.png', 'Playful Arch')" />
+            <div class="emoji-card-label">Playful Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE19.png', 'Playful_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE19.png', 'Playful Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+          <div class="emoji-card">
+            <img src="assets/img/emojis/ArchE20.png" alt="Magical Arch" onclick="openImageModal('assets/img/emojis/ArchE20.png', 'Magical Arch')" />
+            <div class="emoji-card-label">Magical Arch</div>
+            <div class="gallery-buttons">
+              <button onclick="downloadImage('assets/img/emojis/ArchE20.png', 'Magical_Arch.png')" class="btn-download">📥 Download</button>
+              <button onclick="copyImageToClipboard('assets/img/emojis/ArchE20.png', 'Magical Arch')" class="btn-copy">📋 Copy</button>
+            </div>
+          </div>
+
+          <!-- See Less Button for Emojis -->
+          <div class="emoji-card see-less-card" id="seeLessBtnEmoji" onclick="collapseEmojiGallery()" style="display: none;">
+            <div class="see-more-content">
+              <div class="see-more-icon">➖</div>
+              <div class="see-more-text">See Less</div>
+            </div>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- Image Modal -->
+      <div class="image-modal" id="imageModal">
+        <div class="modal-content">
+          <span class="modal-close" onclick="closeImageModal()">&times;</span>
+          <img id="modalImage" src="" alt="">
+          <div class="modal-caption" id="modalCaption"></div>
+          <div class="modal-buttons">
+            <button id="modalDownload" class="btn-download">📥 Download</button>
+            <button id="modalCopy" class="btn-copy">📋 Copy</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <section class="arch-cta">
+      <h2>Ready to Make History?</h2>
+      <p>Your vote today defines tomorrow's digital museum. Every meme you choose is a piece of history preserved forever.</p>
+      <div class="cta-buttons">
+        <a href="nominate.html" class="cta-btn">Nominate Memes</a>
+        <a href="vote.html" class="cta-btn">Vote Now</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2025 Archive of Meme. Preserving internet culture, one meme at
+          a time.
+        </p>
+        <div class="footer-links">
+          <a href="https://x.com" target="_blank">X</a>
+          <a href="https://github.com/Archive-of-meme" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="arch-decoration" title="Hi! I'm Arch!"></div>
+
+    <img src="assets/img/emojis/ArchE1.png" class="floating-arch" style="animation-delay: 0s;" />
+    <img src="assets/img/emojis/ArchE2.png" class="floating-arch" style="animation-delay: 5s;" />
+    <img src="assets/img/emojis/ArchE3.png" class="floating-arch" style="animation-delay: 10s;" />
+
+    <div class="copied-notification" id="copiedNotification">
+      Arch emoji copied!
+    </div>
+
+    <script src="js/wallet-simple.js"></script>
+    <script src="js/arch-random.js"></script>
+    <script src="js/gallery.js"></script>
+    <script>
+      function copyContract() {
+        const contractAddress = document.getElementById('contractAddress').textContent.trim();
+
+        const tempInput = document.createElement('input');
+        tempInput.value = contractAddress;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+
+        // Show notification
+        const notification = document.getElementById('copiedNotification');
+        notification.textContent = 'Contract address copied!';
+        notification.classList.add('show');
+
+        setTimeout(() => {
+          notification.classList.remove('show');
+        }, 2000);
+      }
+
+      function copyEmoji(imagePath, altText) {
+        // Create a temporary element to show feedback
+        const notification = document.getElementById('copiedNotification');
+        notification.classList.add('show');
+
+        // In a real implementation, this would copy the image to clipboard
+        // For now, we'll copy the path as text
+        const tempInput = document.createElement('input');
+        tempInput.value = imagePath;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+
+        setTimeout(() => {
+          notification.classList.remove('show');
+        }, 2000);
+      }
+
+      // Add parallax effect to floating archs
+      document.addEventListener('mousemove', (e) => {
+        const archs = document.querySelectorAll('.floating-arch');
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        archs.forEach((arch, index) => {
+          const speed = (index + 1) * 10;
+          arch.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -125,6 +125,31 @@ body {
   box-shadow: 2px 2px 0px var(--color-ink);
 }
 
+/* $ARCH menu item special styling */
+.token-badge-menu {
+  background: var(--color-accent) !important;
+  color: var(--color-white) !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  font-family: var(--font-sketch) !important;
+  font-weight: 700 !important;
+  border: 2px solid var(--color-ink) !important;
+  box-shadow: 2px 2px 0px var(--color-ink) !important;
+  transform: none !important;
+  transition: none !important;
+  display: inline-block;
+}
+
+.token-badge-menu:hover {
+  transform: none !important;
+  box-shadow: 2px 2px 0px var(--color-ink) !important;
+  background: var(--color-accent) !important;
+}
+
+.nav-menu li .token-badge-menu::after {
+  display: none !important;
+}
+
 .nav-menu {
   display: flex;
   list-style: none;
@@ -266,18 +291,14 @@ body {
 }
 
 .phase-progress {
-  background-color: var(--color-ink);
+  background: #FFC107 !important;
   background-image: repeating-linear-gradient(
     45deg,
-    transparent,
-    transparent 2px,
-    var(--color-sketch-gray) 2px,
-    var(--color-sketch-gray) 3px,
-    transparent 3px,
-    transparent 5px,
-    var(--color-ink-light) 5px,
-    var(--color-ink-light) 6px
-  );
+    #FFC107,
+    #FFC107 10px,
+    #FFD54F 10px,
+    #FFD54F 20px
+  ) !important;
   height: 100%;
   width: 60%;
   transition: width 1s ease;
@@ -296,8 +317,8 @@ body {
     -45deg,
     transparent,
     transparent 8px,
-    rgba(62, 39, 35, 0.1) 8px,
-    rgba(62, 39, 35, 0.1) 9px
+    rgba(255, 255, 255, 0.1) 8px,
+    rgba(255, 255, 255, 0.1) 9px
   );
 }
 
@@ -577,6 +598,96 @@ body {
   font-family: var(--font-sketch);
   color: var(--color-ink-light);
   font-weight: 700;
+}
+
+/* Wallet Menu */
+.wallet-menu {
+  position: fixed;
+  background: var(--color-white);
+  border: 3px solid var(--color-ink);
+  border-radius: var(--radius-sketch);
+  padding: 20px;
+  box-shadow: 5px 5px 0px var(--color-ink);
+  z-index: 10000;
+  display: none;
+  min-width: 250px;
+}
+
+.wallet-menu-item {
+  padding: 10px 0;
+  font-family: var(--font-sketch);
+  border-bottom: 1px solid var(--color-ink-light);
+}
+
+.wallet-menu-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: var(--color-gold);
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-sketch);
+  font-family: var(--font-sketch);
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.wallet-menu-btn:hover {
+  background: var(--color-accent);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0px var(--color-ink);
+}
+
+.arch-balance {
+  display: inline-block;
+  padding: 5px 15px;
+  background: var(--color-paper);
+  border: 2px solid var(--color-ink);
+  border-radius: 20px;
+  font-family: var(--font-sketch);
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+/* Notifications */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border: 3px solid var(--color-ink);
+  border-radius: var(--radius-sketch);
+  font-family: var(--font-sketch);
+  font-weight: 700;
+  box-shadow: 3px 3px 0px var(--color-ink);
+  z-index: 10001;
+  transform: translateX(400px);
+  transition: transform 0.3s ease;
+}
+
+.notification.show {
+  transform: translateX(0);
+}
+
+.notification-success {
+  background: #4CAF50;
+  color: white;
+}
+
+.notification-error {
+  background: #f44336;
+  color: white;
+}
+
+.notification-warning {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+.notification-info {
+  background: var(--color-primary);
+  color: white;
 }
 
 /* Footer */

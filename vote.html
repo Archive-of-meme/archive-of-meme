@@ -363,6 +363,7 @@
         </div>
         <ul class="nav-menu">
           <li><a href="index.html">Home</a></li>
+          <li><a href="arch.html">Arch</a></li>
           <li><a href="nominate.html">Nominate</a></li>
           <li><a href="vote.html" class="active">Vote</a></li>
           <li><a href="archive.html">Archive</a></li>
@@ -427,155 +428,10 @@
     <div class="voting-container" id="votingSection">
       <div>
         <div class="voting-grid" id="votingGrid">
-          <!-- Example voting cards - would be loaded dynamically -->
-          <div class="vote-card">
-            <div class="rank-badge gold">#1</div>
-            <div
-              style="
-                width: 100%;
-                height: 250px;
-                background: var(--color-paper);
-                border-bottom: 3px solid var(--color-ink);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: var(--font-sketch);
-                color: var(--color-ink-light);
-                font-size: 1.2rem;
-              "
-            >
-              [Meme Image #1]
-            </div>
-            <div class="vote-info">
-              <h3 class="vote-title">Wojak at McDonald's</h3>
-              <div class="vote-meta">
-                <span class="nominator">by 0x1234...5678</span>
-                <div class="vote-count">
-                  <span class="vote-count-number">234</span>
-                  <span>votes</span>
-                </div>
-              </div>
-              <div class="vote-actions">
-                <button class="vote-btn" onclick="voteMeme('meme1')">
-                  VOTE
-                </button>
-                <button class="share-btn" onclick="shareMeme('meme1')">
-                  🔗
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="vote-card">
-            <div class="rank-badge silver">#2</div>
-            <div
-              style="
-                width: 100%;
-                height: 250px;
-                background: var(--color-paper);
-                border-bottom: 3px solid var(--color-ink);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: var(--font-sketch);
-                color: var(--color-ink-light);
-                font-size: 1.2rem;
-              "
-            >
-              [Meme Image #2]
-            </div>
-            <div class="vote-info">
-              <h3 class="vote-title">This is Fine 2024</h3>
-              <div class="vote-meta">
-                <span class="nominator">by 0xabcd...efgh</span>
-                <div class="vote-count">
-                  <span class="vote-count-number">189</span>
-                  <span>votes</span>
-                </div>
-              </div>
-              <div class="vote-actions">
-                <button class="vote-btn" onclick="voteMeme('meme2')">
-                  VOTE
-                </button>
-                <button class="share-btn" onclick="shareMeme('meme2')">
-                  🔗
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="vote-card">
-            <div class="rank-badge bronze">#3</div>
-            <div
-              style="
-                width: 100%;
-                height: 250px;
-                background: var(--color-paper);
-                border-bottom: 3px solid var(--color-ink);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: var(--font-sketch);
-                color: var(--color-ink-light);
-                font-size: 1.2rem;
-              "
-            >
-              [Meme Image #3]
-            </div>
-            <div class="vote-info">
-              <h3 class="vote-title">Pepe the Philosopher</h3>
-              <div class="vote-meta">
-                <span class="nominator">by 0x9876...5432</span>
-                <div class="vote-count">
-                  <span class="vote-count-number">145</span>
-                  <span>votes</span>
-                </div>
-              </div>
-              <div class="vote-actions">
-                <button class="vote-btn voted" disabled>VOTED</button>
-                <button class="share-btn" onclick="shareMeme('meme3')">
-                  🔗
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="vote-card">
-            <div class="rank-badge">#4</div>
-            <div
-              style="
-                width: 100%;
-                height: 250px;
-                background: var(--color-paper);
-                border-bottom: 3px solid var(--color-ink);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: var(--font-sketch);
-                color: var(--color-ink-light);
-                font-size: 1.2rem;
-              "
-            >
-              [Meme Image #4]
-            </div>
-            <div class="vote-info">
-              <h3 class="vote-title">Galaxy Brain Evolution</h3>
-              <div class="vote-meta">
-                <span class="nominator">by 0xdead...beef</span>
-                <div class="vote-count">
-                  <span class="vote-count-number">98</span>
-                  <span>votes</span>
-                </div>
-              </div>
-              <div class="vote-actions">
-                <button class="vote-btn" onclick="voteMeme('meme4')">
-                  VOTE
-                </button>
-                <button class="share-btn" onclick="shareMeme('meme4')">
-                  🔗
-                </button>
-              </div>
-            </div>
+          <!-- Memes will be loaded here dynamically -->
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--color-ink-light); font-family: var(--font-sketch); font-size: 1.2rem;">
+            <p>Loading today's memes...</p>
+            <p style="margin-top: 20px; font-size: 1rem;">If no memes appear, come back during voting phase (16:00-20:00 UTC)</p>
           </div>
         </div>
       </div>
@@ -584,30 +440,8 @@
       <div class="leaderboard">
         <h3>🏆 Live Rankings</h3>
         <div id="leaderboardList">
-          <div class="leaderboard-item">
-            <div class="leaderboard-rank">1</div>
-            <div class="leaderboard-title">Wojak at McDonald's</div>
-            <div class="leaderboard-votes">234</div>
-          </div>
-          <div class="leaderboard-item">
-            <div class="leaderboard-rank">2</div>
-            <div class="leaderboard-title">This is Fine 2024</div>
-            <div class="leaderboard-votes">189</div>
-          </div>
-          <div class="leaderboard-item">
-            <div class="leaderboard-rank">3</div>
-            <div class="leaderboard-title">Pepe the Philosopher</div>
-            <div class="leaderboard-votes">145</div>
-          </div>
-          <div class="leaderboard-item">
-            <div class="leaderboard-rank">4</div>
-            <div class="leaderboard-title">Galaxy Brain</div>
-            <div class="leaderboard-votes">98</div>
-          </div>
-          <div class="leaderboard-item">
-            <div class="leaderboard-rank">5</div>
-            <div class="leaderboard-title">NPC Meme</div>
-            <div class="leaderboard-votes">67</div>
+          <div style="text-align: center; padding: 40px 20px; color: var(--color-ink-light); font-family: var(--font-sketch);">
+            Rankings will appear during voting phase
           </div>
         </div>
         <div
@@ -630,15 +464,17 @@
           a time.
         </p>
         <div class="footer-links">
-          <a href="#">X</a>
-          <a href="#">Discord</a>
-          <a href="#">GitHub</a>
+          <a href="https://x.com" target="_blank">X</a>
+          <a href="https://github.com/Archive-of-meme" target="_blank">GitHub</a>
         </div>
       </div>
     </footer>
 
     <div class="arch-decoration" title="Hi! I'm Arch!"></div>
 
+    <!-- Solana Web3.js for Phantom integration -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <script src="js/phantom-integration.js"></script>
     <script src="js/wallet-simple.js"></script>
     <script src="js/arch-random.js"></script>
     <script>
@@ -646,39 +482,98 @@
       function checkVotingPhase() {
         const now = new Date();
         const utcHour = now.getUTCHours();
+        const utcMinute = now.getUTCMinutes();
 
-        // Voting is only 16:00 - 20:00 UTC
-        if (utcHour < 16 || utcHour >= 20) {
-          document.getElementById("notVotingPhase").style.display = "block";
-          document.getElementById("votingSection").style.display = "none";
-          return false;
+        // Display current UTC time for debugging
+        console.log(`Current UTC time: ${utcHour}:${utcMinute < 10 ? '0' : ''}${utcMinute}`);
+
+        let currentPhase;
+        let phaseMessage;
+        let inVotingPhase = false;
+
+        if (utcHour < 16) {
+          currentPhase = 'nomination';
+          phaseMessage = `⏰ Voting opens at 16:00 UTC (in ${16 - utcHour} hours)`;
+        } else if (utcHour < 20) {
+          currentPhase = 'voting';
+          phaseMessage = `✅ Voting Phase Active (until 20:00 UTC)`;
+          inVotingPhase = true;
+        } else {
+          currentPhase = 'archive';
+          phaseMessage = `📦 Archive Phase - Voting closed for today`;
         }
 
-        document.getElementById("notVotingPhase").style.display = "none";
-        document.getElementById("votingSection").style.display = "grid";
-        return true;
+        console.log(`Current phase: ${currentPhase} - ${phaseMessage}`);
+
+        // Update phase display
+        const phaseDisplay = document.getElementById('phaseMessage');
+        if (phaseDisplay) {
+          phaseDisplay.textContent = phaseMessage;
+        }
+
+        // Show/hide voting section based on phase
+        // For testing, we'll allow voting outside of hours but show warning
+        if (!inVotingPhase) {
+          const notVotingDiv = document.getElementById("notVotingPhase");
+          if (notVotingDiv) {
+            notVotingDiv.innerHTML = `
+              <div style="background: #fff3cd; border: 3px solid #856404; padding: 30px; margin: 40px auto; max-width: 600px; border-radius: 15px; text-align: center;">
+                <h2>🕐 ${phaseMessage}</h2>
+                <p style="font-size: 1.1rem; margin-top: 20px;">Voting is only open from <strong>16:00 to 20:00 UTC</strong> daily.</p>
+                <p style="color: #856404; margin-top: 15px;">For testing purposes, you can still interact with the voting interface below.</p>
+              </div>
+            `;
+            notVotingDiv.style.display = "block";
+          }
+          // Still show voting section for testing
+          document.getElementById("votingSection").style.display = "grid";
+        } else {
+          document.getElementById("notVotingPhase").style.display = "none";
+          document.getElementById("votingSection").style.display = "grid";
+        }
+
+        return inVotingPhase;
       }
 
       // Vote for a meme
       async function voteMeme(memeId) {
         // Check wallet connection
-        if (!walletUtils.getAddress()) {
+        const walletAddress = localStorage.getItem('testWallet') || (window.phantomWallet && window.phantomWallet.address);
+        if (!walletAddress) {
           showNotification("Please connect your wallet to vote", "warning");
           return;
         }
 
-        // Check $ARCH balance
-        if (!walletUtils.canVote()) {
+        // Check $ARCH balance (using Phantom integration)
+        let hasEnoughArch = false;
+        if (window.phantomWallet && window.phantomWallet.isConnected) {
+          // Real Phantom wallet - check actual balance
+          await window.checkArchBalance();
+          hasEnoughArch = window.phantomWallet.archBalance >= 100;
+        } else {
+          // Test wallet - assume they have enough
+          hasEnoughArch = true;
+        }
+
+        if (!hasEnoughArch) {
           showNotification(
-            "You need $ARCH tokens to vote! Get some first.",
+            `You need at least 100 $ARCH tokens to vote! Get some first.`,
             "error"
           );
 
           // Show where to get $ARCH
           const warningDiv = document.createElement("div");
           warningDiv.className = "no-arch-warning";
+          warningDiv.style.cssText = `
+            background: #dc3545;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+          `;
           warningDiv.innerHTML =
-            'Get $ARCH on <a href="https://raydium.io" target="_blank" style="color: white; text-decoration: underline;">Raydium</a> or <a href="https://jup.ag" target="_blank" style="color: white; text-decoration: underline;">Jupiter</a>';
+            `Get $ARCH on <a href="https://raydium.io/swap/?inputCurrency=sol&outputCurrency=DmE9nZs4LfNCtMUHZWckstSHvHFCusBdGwjhqJuYpump" target="_blank" style="color: white; text-decoration: underline;">Raydium</a> or <a href="https://jup.ag" target="_blank" style="color: white; text-decoration: underline;">Jupiter</a>`;
 
           const voteBtn = event.target;
           voteBtn.parentElement.appendChild(warningDiv);
@@ -726,22 +621,114 @@
         }
       }
 
-      // Update leaderboard (would pull from backend)
-      function updateLeaderboard() {
-        // This would fetch real data from backend
-        console.log("Updating leaderboard...");
+      // Load memes for voting
+      async function loadVotingMemes() {
+        try {
+          const response = await fetch('/api/get-todays-memes.php');
+          const data = await response.json();
+
+          const grid = document.getElementById('votingGrid');
+          if (!grid) return;
+
+          if (data.success && data.memes && data.memes.length > 0) {
+            // Sort memes by vote count (if available)
+            const sortedMemes = data.memes.sort((a, b) => (b.votes || 0) - (a.votes || 0));
+
+            grid.innerHTML = sortedMemes.map((meme, index) => {
+              const rankClass = index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? 'bronze' : '';
+              return `
+                <div class="vote-card">
+                  <div class="rank-badge ${rankClass}">#${index + 1}</div>
+                  <div style="width: 100%; height: 250px; overflow: hidden; background: var(--color-paper); border-bottom: 3px solid var(--color-ink);">
+                    ${meme.image_url ?
+                      `<img src="${meme.image_url}" alt="${meme.title}" style="width: 100%; height: 100%; object-fit: cover;">` :
+                      `<div style="display: flex; align-items: center; justify-content: center; height: 100%; font-family: var(--font-sketch); color: var(--color-ink-light); font-size: 1.2rem;">[No Image]</div>`
+                    }
+                  </div>
+                  <div class="vote-info">
+                    <h3 class="vote-title">${meme.title || 'Untitled'}</h3>
+                    <div class="vote-meta">
+                      <span class="nominator">by ${meme.nominator_wallet ? meme.nominator_wallet.slice(0, 6) + '...' + meme.nominator_wallet.slice(-4) : 'Unknown'}</span>
+                      <div class="vote-count">
+                        <span class="vote-count-number">${meme.votes || 0}</span>
+                        <span>votes</span>
+                      </div>
+                    </div>
+                    <div class="vote-actions">
+                      <button class="vote-btn" onclick="voteMeme('${meme.id}')">VOTE</button>
+                      <button class="share-btn" onclick="shareMeme('${meme.id}')">🔗</button>
+                    </div>
+                  </div>
+                </div>
+              `;
+            }).join('');
+
+            updateLeaderboard(sortedMemes);
+          } else {
+            grid.innerHTML = `
+              <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--color-ink-light); font-family: var(--font-sketch);">
+                <p style="font-size: 1.3rem;">No memes nominated today yet!</p>
+                <p style="margin-top: 20px;">Be the first to nominate a meme</p>
+                <a href="nominate.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Nominate Now</a>
+              </div>
+            `;
+          }
+        } catch (error) {
+          console.error('Error loading memes:', error);
+        }
+      }
+
+      // Update leaderboard with real data
+      function updateLeaderboard(memes) {
+        const leaderboardList = document.getElementById('leaderboardList');
+        if (!leaderboardList || !memes || memes.length === 0) return;
+
+        leaderboardList.innerHTML = memes.slice(0, 5).map((meme, index) => `
+          <div class="leaderboard-item">
+            <div class="leaderboard-rank">${index + 1}</div>
+            <div class="leaderboard-title">${meme.title || 'Untitled'}</div>
+            <div class="leaderboard-votes">${meme.votes || 0}</div>
+          </div>
+        `).join('');
+      }
+
+      // Show notification function
+      function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.textContent = message;
+        notification.style.cssText = `
+          position: fixed;
+          top: 80px;
+          right: 20px;
+          left: auto;
+          max-width: 400px;
+          padding: 15px 20px;
+          background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : type === 'warning' ? '#ffc107' : '#17a2b8'};
+          color: white;
+          border: 3px solid #000;
+          border-radius: 10px;
+          box-shadow: 4px 4px 0px #000;
+          z-index: 10000;
+          font-family: var(--font-body);
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.remove();
+        }, 3000);
       }
 
       // Check phase on load
       checkVotingPhase();
+      loadVotingMemes();
 
       // Check every minute
       setInterval(checkVotingPhase, 60000);
 
-      // Update leaderboard every 10 seconds during voting
-      if (checkVotingPhase()) {
-        setInterval(updateLeaderboard, 10000);
-      }
+      // Reload memes every 30 seconds during voting
+      setInterval(loadVotingMemes, 30000);
     </script>
   </body>
 </html>

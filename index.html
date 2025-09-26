@@ -32,6 +32,7 @@
         </div>
         <ul class="nav-menu">
           <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="arch.html">Arch</a></li>
           <li><a href="nominate.html">Nominate</a></li>
           <li><a href="vote.html">Vote</a></li>
           <li><a href="archive.html">Archive</a></li>
@@ -155,16 +156,126 @@
           a time.
         </p>
         <div class="footer-links">
-          <a href="#">X</a>
-          <a href="#">Discord</a>
-          <a href="#">GitHub</a>
+          <a href="https://x.com" target="_blank">X</a>
+          <a href="https://github.com/Archive-of-meme" target="_blank">GitHub</a>
         </div>
       </div>
     </footer>
 
     <div class="arch-decoration" title="Hi! I'm Arch!"></div>
 
+    <!-- Solana Web3.js for Phantom integration -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+    <script src="js/phantom-integration.js"></script>
     <script src="js/wallet-simple.js"></script>
     <script src="js/arch-random.js"></script>
+    <script>
+      // Update phase indicator
+      function updatePhaseIndicator() {
+        const now = new Date();
+        const utcHour = now.getUTCHours();
+        const utcMinute = now.getUTCMinutes();
+        const utcSecond = now.getUTCSeconds();
+
+        let phase, nextPhaseHour, phaseProgress;
+
+        if (utcHour < 16) {
+          phase = 'Nomination Phase';
+          nextPhaseHour = 16;
+          phaseProgress = (utcHour * 60 + utcMinute) / (16 * 60) * 100;
+        } else if (utcHour < 20) {
+          phase = 'Voting Phase';
+          nextPhaseHour = 20;
+          phaseProgress = ((utcHour - 16) * 60 + utcMinute) / (4 * 60) * 100;
+        } else {
+          phase = 'Archive Phase';
+          nextPhaseHour = 24;
+          phaseProgress = ((utcHour - 20) * 60 + utcMinute) / (4 * 60) * 100;
+        }
+
+        // Update phase text
+        document.getElementById('currentPhase').textContent = phase;
+
+        // Calculate time remaining
+        let hoursRemaining, minutesRemaining, secondsRemaining;
+        if (nextPhaseHour === 24) {
+          hoursRemaining = 23 - utcHour + 16;
+          minutesRemaining = 59 - utcMinute;
+          secondsRemaining = 59 - utcSecond;
+        } else {
+          hoursRemaining = nextPhaseHour - utcHour - 1;
+          minutesRemaining = 59 - utcMinute;
+          secondsRemaining = 59 - utcSecond;
+        }
+
+        const timeString = `${hoursRemaining.toString().padStart(2, '0')}:${minutesRemaining.toString().padStart(2, '0')}:${secondsRemaining.toString().padStart(2, '0')} remaining`;
+        document.getElementById('phaseTimer').textContent = timeString;
+
+        // Update progress bar
+        const progressBar = document.getElementById('phaseProgress');
+        if (progressBar) {
+          progressBar.style.width = `${phaseProgress}%`;
+
+          // Change color based on phase
+          if (phase === 'Nomination Phase') {
+            progressBar.style.background = 'var(--color-accent)';
+          } else if (phase === 'Voting Phase') {
+            progressBar.style.background = 'var(--color-gold)';
+          } else {
+            progressBar.style.background = 'var(--color-success)';
+          }
+        }
+
+        // Log current UTC time for debugging
+        console.log(`UTC Time: ${utcHour}:${utcMinute < 10 ? '0' : ''}${utcMinute}:${utcSecond < 10 ? '0' : ''}${utcSecond} - ${phase}`);
+      }
+
+      // Load stats (will fetch from API)
+      async function loadStats() {
+        try {
+          // Set initial values to 0
+          document.getElementById('todayNominations').textContent = '0';
+          document.getElementById('activeVotes').textContent = '0';
+          document.getElementById('totalArchived').textContent = '0';
+          document.getElementById('activeHolders').textContent = '0';
+
+          // TODO: Fetch real stats from API when available
+          // const response = await fetch('/api/get-stats.php');
+          // const data = await response.json();
+          // Update with real data
+        } catch (error) {
+          console.error('Error loading stats:', error);
+        }
+      }
+
+      // Load yesterday's winners (placeholder)
+      async function loadYesterdaysWinners() {
+        // This would fetch from your API
+        console.log('Loading yesterday winners...');
+      }
+
+      // Load recent archives (placeholder)
+      async function loadRecentArchives() {
+        // This would fetch from your API
+        console.log('Loading recent archives...');
+      }
+
+      // Scroll to token section
+      function scrollToToken(event) {
+        event.preventDefault();
+        const tokenSection = document.getElementById('token');
+        if (tokenSection) {
+          tokenSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+
+      // Initialize
+      updatePhaseIndicator();
+      setInterval(updatePhaseIndicator, 1000); // Update every second
+      loadStats();
+      loadYesterdaysWinners();
+      loadRecentArchives();
+    </script>
   </body>
 </html>
