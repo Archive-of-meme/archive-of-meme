@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vote (TEST MODE) - Archive of Meme</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/vote.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <a href="index.html" class="logo-link">
+            <img
+              src="assets/img/Logo.png"
+              alt="Archive of Meme"
+              class="logo"
+            />
+          </a>
+          <h1>Archive of Meme</h1>
+          <span class="token-badge">$ARCH</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="nominate-test.html">Nominate (TEST)</a></li>
+          <li><a href="vote-test.html" class="active">Vote (TEST)</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="whitepaper.html">Whitepaper</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+        <button class="wallet-btn" id="connectWallet">Connect Wallet</button>
+      </div>
+    </nav>
+
+    <section class="vote-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>🗳️ Vote for Today's Memes (TEST MODE)</h2>
+          <p
+            style="
+              background: #4caf50;
+              color: white;
+              padding: 10px;
+              border-radius: 5px;
+            "
+          >
+            ✅ TEST MODE ACTIVE - You can vote anytime!
+          </p>
+        </div>
+
+        <div
+          id="statusMessage"
+          style="text-align: center; margin: 20px 0"
+        ></div>
+
+        <div class="memes-grid" id="memesGrid">
+          <div style="text-align: center; padding: 40px">
+            <p>⏳ Loading memes...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Archive of Meme. TEST MODE ACTIVE</p>
+        <div class="footer-links">
+          <a href="#">X</a>
+          <a href="#">Discord</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="arch-decoration" title="Hi! I'm Arch!"></div>
+
+    <script src="js/arch-random.js"></script>
+    <script>
+      let currentWallet = null;
+
+      // Simple wallet connection
+      document
+        .getElementById("connectWallet")
+        .addEventListener("click", function () {
+          const testWallet = prompt(
+            "Enter any test wallet address (or press OK for random):"
+          );
+          currentWallet =
+            testWallet ||
+            "TEST" + Math.random().toString(36).substr(2, 34).toUpperCase();
+          this.textContent =
+            currentWallet.substr(0, 4) + "..." + currentWallet.substr(-4);
+          alert("✅ Wallet connected (TEST MODE)");
+          loadMemes();
+        });
+
+      // Load today's memes
+      async function loadMemes() {
+        const grid = document.getElementById("memesGrid");
+        grid.innerHTML =
+          '<div style="text-align: center; padding: 40px;"><p>⏳ Loading memes...</p></div>';
+
+        try {
+          const response = await fetch(
+            "/archive-of-meme/api/get-todays-memes.php"
+          );
+          const data = await response.json();
+
+          if (!data.success) {
+            throw new Error(data.error || "Failed to load memes");
+          }
+
+          if (data.memes.length === 0) {
+            grid.innerHTML =
+              '<div style="text-align: center; padding: 40px;"><p>No memes nominated today. Go nominate some!</p><a href="nominate-test.html">Go to Nominate</a></div>';
+            return;
+          }
+
+          grid.innerHTML = data.memes
+            .map(
+              (meme) => `
+                    <div class="meme-card">
+                        <div class="meme-rank">#${meme.rank}</div>
+                        <h3>${meme.title}</h3>
+                        <div class="meme-image" style="background: #f0f0f0; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+                            ${
+                              meme.imageUrl
+                                ? `<img src="${meme.imageUrl}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`
+                                : "🖼️"
+                            }
+                        </div>
+                        <div class="meme-info">
+                            <p>By: ${meme.nominator}</p>
+                            <p class="vote-count">Votes: <span id="votes-${
+                              meme.id
+                            }">${meme.votes}</span></p>
+                        </div>
+                        <button class="vote-btn" onclick="vote(${
+                          meme.id
+                        })" id="btn-${meme.id}">
+                            Vote for this meme
+                        </button>
+                    </div>
+                `
+            )
+            .join("");
+        } catch (error) {
+          grid.innerHTML = `<div style="text-align: center; padding: 40px; color: red;"><p>❌ Error: ${error.message}</p></div>`;
+        }
+      }
+
+      // Vote function
+      async function vote(memeId) {
+        if (!currentWallet) {
+          alert("Please connect your wallet first!");
+          return;
+        }
+
+        const statusDiv = document.getElementById("statusMessage");
+        const button = document.getElementById(`btn-${memeId}`);
+        const votesSpan = document.getElementById(`votes-${memeId}`);
+
+        button.disabled = true;
+        button.textContent = "Voting...";
+        statusDiv.innerHTML =
+          '<p style="color: orange;">⏳ Processing vote...</p>';
+
+        try {
+          const response = await fetch("/archive-of-meme/api/vote-test.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              memeId: memeId,
+              wallet: currentWallet,
+            }),
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            statusDiv.innerHTML = `<p style="color: green;">✅ ${result.message}</p>`;
+            button.textContent = "✅ Voted!";
+            button.style.background = "#4CAF50";
+
+            // Update vote count
+            const currentVotes = parseInt(votesSpan.textContent);
+            votesSpan.textContent = currentVotes + 1;
+          } else {
+            statusDiv.innerHTML = `<p style="color: red;">❌ ${result.error}</p>`;
+            button.disabled = false;
+            button.textContent = "Vote for this meme";
+          }
+        } catch (error) {
+          statusDiv.innerHTML = `<p style="color: red;">❌ Error: ${error.message}</p>`;
+          button.disabled = false;
+          button.textContent = "Vote for this meme";
+        }
+      }
+
+      // Load memes on page load
+      loadMemes();
+    </script>
+  </body>
+</html>

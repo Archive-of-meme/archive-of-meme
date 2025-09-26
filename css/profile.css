@@ -1,0 +1,359 @@
+.profile-container {
+    min-height: calc(100vh - 140px);
+    padding: 2rem 0;
+}
+
+.profile-not-connected {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.connect-prompt {
+    text-align: center;
+    background: var(--paper-color);
+    border: 3px dashed var(--ink-color);
+    border-radius: 15px;
+    padding: 3rem;
+    max-width: 500px;
+}
+
+.connect-prompt h2 {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--ink-color);
+    margin-bottom: 1rem;
+}
+
+.connect-prompt p {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-family: 'Kalam', cursive;
+}
+
+.connect-btn {
+    padding: 1rem 2rem;
+    background: var(--gold-accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.connect-btn:hover {
+    background: #FF9800;
+    transform: scale(1.05);
+}
+
+.profile-header {
+    display: flex;
+    gap: 2rem;
+    background: var(--paper-color);
+    border: 3px dashed var(--ink-color);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.profile-avatar {
+    flex-shrink: 0;
+}
+
+.avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border: 3px solid var(--ink-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h1 {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--ink-color);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.profile-stats .stat {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.5rem;
+    color: var(--gold-accent);
+}
+
+.stat-label {
+    display: block;
+    font-family: 'Kalam', cursive;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.achievements-section {
+    background: var(--paper-color);
+    border: 3px dashed var(--ink-color);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.achievements-section h2 {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--ink-color);
+    margin-bottom: 1.5rem;
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+
+.badge {
+    text-align: center;
+    padding: 1rem;
+    background: white;
+    border: 2px solid var(--ink-color);
+    border-radius: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+
+.badge:hover {
+    transform: translateY(-5px);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.badge.locked {
+    opacity: 0.5;
+    background: #f0f0f0;
+}
+
+.badge-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.badge-name {
+    font-family: 'Kalam', cursive;
+    font-size: 0.9rem;
+    color: var(--ink-color);
+}
+
+.badge[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.activity-section {
+    background: var(--paper-color);
+    border: 3px dashed var(--ink-color);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.activity-section h2 {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--ink-color);
+    margin-bottom: 1.5rem;
+}
+
+.activity-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px dashed var(--text-light);
+}
+
+.tab-btn {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: none;
+    font-family: 'Kalam', cursive;
+    font-size: 1rem;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    color: var(--ink-color);
+    border-bottom: 3px solid var(--gold-accent);
+    font-weight: bold;
+}
+
+.tab-btn:hover:not(.active) {
+    color: var(--ink-color);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.activity-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.activity-item {
+    background: white;
+    border: 1px dashed var(--text-light);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.activity-item.winner {
+    border: 2px solid var(--gold-accent);
+}
+
+.activity-item.winner.gold {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+}
+
+.activity-item.winner.silver {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+}
+
+.activity-date {
+    font-family: 'Kalam', cursive;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    min-width: 140px;
+}
+
+.activity-details h4 {
+    font-family: 'Kalam', cursive;
+    color: var(--ink-color);
+    margin-bottom: 0.5rem;
+}
+
+.activity-details p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.status-badge.archived {
+    background: #4CAF50;
+    color: white;
+}
+
+.status-badge.pending {
+    background: #FFC107;
+    color: var(--ink-color);
+}
+
+.stats-overview {
+    background: var(--paper-color);
+    border: 3px dashed var(--ink-color);
+    border-radius: 15px;
+    padding: 2rem;
+}
+
+.stats-overview h2 {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--ink-color);
+    margin-bottom: 1.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: white;
+    border: 2px solid var(--ink-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2rem;
+    color: var(--gold-accent);
+    margin-bottom: 0.5rem;
+}
+
+.stat-title {
+    font-family: 'Kalam', cursive;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .badges-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .activity-tabs {
+        flex-wrap: wrap;
+    }
+
+    .activity-item {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Archive of Meme Whitepaper - Learn about $ARCH token and our mission to preserve internet culture"
+    />
+    <title>Whitepaper - Archive of Meme ($ARCH)</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .whitepaper-container {
+        background: var(--color-white);
+        border: 4px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        margin: 40px auto;
+        padding: 60px;
+        max-width: 900px;
+        box-shadow: var(--shadow-sketch);
+        transform: rotate(0.2deg);
+      }
+
+      .whitepaper-header {
+        text-align: center;
+        margin-bottom: 60px;
+        padding-bottom: 30px;
+        border-bottom: 3px dashed var(--color-ink);
+      }
+
+      .whitepaper-header h1 {
+        font-family: var(--font-heading);
+        font-size: 3rem;
+        color: var(--color-ink);
+        text-shadow: 3px 3px 0px var(--color-gold);
+        transform: rotate(-1deg);
+        margin-bottom: 20px;
+      }
+
+      .version-badge {
+        display: inline-block;
+        background: var(--color-accent);
+        color: var(--color-white);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        border: 2px solid var(--color-ink);
+        box-shadow: 2px 2px 0px var(--color-ink);
+        transform: rotate(2deg);
+      }
+
+      .toc {
+        background: var(--color-paper);
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 30px;
+        margin-bottom: 40px;
+        transform: rotate(-0.5deg);
+      }
+
+      .toc h2 {
+        font-family: var(--font-heading);
+        color: var(--color-ink);
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+      }
+
+      .toc ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .toc li {
+        margin-bottom: 12px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .toc li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--color-accent);
+        font-weight: bold;
+      }
+
+      .toc a {
+        color: var(--color-ink);
+        text-decoration: none;
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: var(--transition);
+      }
+
+      .toc a:hover {
+        color: var(--color-accent);
+        text-decoration: underline wavy;
+      }
+
+      .section {
+        margin-bottom: 50px;
+        padding: 30px;
+        background: var(--color-paper);
+        border: 2px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        transform: rotate(calc(var(--section-rotate, 0) * 1deg));
+      }
+
+      .section:nth-child(odd) {
+        --section-rotate: 0.3;
+      }
+
+      .section:nth-child(even) {
+        --section-rotate: -0.3;
+      }
+
+      .section h2 {
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        color: var(--color-ink);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid var(--color-accent);
+      }
+
+      .section h3 {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        color: var(--color-ink-light);
+        margin-top: 25px;
+        margin-bottom: 15px;
+      }
+
+      .section p {
+        font-family: var(--font-body);
+        line-height: 1.8;
+        margin-bottom: 15px;
+      }
+
+      .section ul {
+        margin-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      .section li {
+        font-family: var(--font-body);
+        margin-bottom: 10px;
+      }
+
+      .highlight-box {
+        background: var(--color-gold);
+        color: var(--color-ink);
+        padding: 20px;
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        margin: 20px 0;
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        box-shadow: 3px 3px 0px var(--color-ink);
+        transform: rotate(-0.5deg);
+      }
+
+      .code-block {
+        background: var(--color-ink);
+        color: var(--color-white);
+        padding: 20px;
+        border-radius: var(--radius);
+        margin: 20px 0;
+        font-family: "Courier New", monospace;
+        overflow-x: auto;
+        box-shadow: 3px 3px 0px var(--color-gold);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 20px;
+        margin: 20px 0;
+      }
+
+      .timeline-item {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        background: var(--color-white);
+        padding: 15px;
+        border: 2px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        box-shadow: 2px 2px 0px var(--color-ink);
+      }
+
+      .timeline-badge {
+        background: var(--color-accent);
+        color: var(--color-white);
+        width: 60px;
+        min-width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        border: 3px solid var(--color-ink);
+      }
+
+      .distribution-chart {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+      }
+
+      .distribution-item {
+        background: var(--color-white);
+        padding: 20px;
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        text-align: center;
+        box-shadow: 3px 3px 0px var(--color-ink);
+        transform: rotate(calc(var(--item-rotate, 0) * 1deg));
+      }
+
+      .distribution-item:nth-child(1) {
+        --item-rotate: -1;
+      }
+      .distribution-item:nth-child(2) {
+        --item-rotate: 1;
+      }
+      .distribution-item:nth-child(3) {
+        --item-rotate: -0.5;
+      }
+
+      .distribution-percentage {
+        font-family: var(--font-heading);
+        font-size: 3rem;
+        color: var(--color-accent);
+        text-shadow: 2px 2px 0px var(--color-ink);
+      }
+
+      .distribution-label {
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        margin-top: 10px;
+      }
+
+      .warning-box {
+        background: var(--color-accent);
+        color: var(--color-white);
+        padding: 20px;
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        margin: 30px 0;
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        box-shadow: 3px 3px 0px var(--color-ink);
+        transform: rotate(0.5deg);
+      }
+
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          var(--color-gold) 0%,
+          var(--color-accent) 100%
+        );
+        color: var(--color-white);
+        padding: 40px;
+        border: 4px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        text-align: center;
+        margin-top: 50px;
+        box-shadow: 5px 5px 0px var(--color-ink);
+        transform: rotate(-0.3deg);
+      }
+
+      .cta-section h2 {
+        font-family: var(--font-heading);
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        text-shadow: 3px 3px 0px var(--color-ink);
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 768px) {
+        .whitepaper-container {
+          padding: 30px;
+          margin: 20px;
+        }
+
+        .distribution-chart {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <a href="index.html" class="logo-link">
+            <img
+              src="assets/img/Logo.png"
+              alt="Archive of Meme"
+              class="logo"
+            />
+          </a>
+          <h1>Archive of Meme</h1>
+          <span class="token-badge">$ARCH</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="nominate.html">Nominate</a></li>
+          <li><a href="vote.html">Vote</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="whitepaper.html" class="active">Whitepaper</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+        <button id="connectWallet" class="wallet-btn">Connect Wallet</button>
+      </div>
+    </nav>
+
+    <div class="whitepaper-container">
+      <div class="whitepaper-header">
+        <h1>📜 Archive of Meme Whitepaper</h1>
+        <span class="version-badge">Version 1.1</span>
+        <p
+          style="
+            margin-top: 20px;
+            font-family: var(--font-sketch);
+            font-size: 1.3rem;
+            color: var(--color-ink-light);
+          "
+        >
+          "If it's not in the Archive, it didn't exist."
+        </p>
+      </div>
+
+      <div class="toc">
+        <h2>📋 Table of Contents</h2>
+        <ul>
+          <li><a href="#thesis">1. Thesis</a></li>
+          <li><a href="#product">2. Product Overview</a></li>
+          <li><a href="#why">3. Why It Matters</a></li>
+          <li><a href="#tech">4. Technical Architecture</a></li>
+          <li><a href="#token">5. Token Economics</a></li>
+          <li><a href="#rules">6. Archive Rules</a></li>
+          <li><a href="#governance">7. Governance</a></li>
+          <li><a href="#security">8. Security & Risks</a></li>
+          <li><a href="#roadmap">9. Roadmap</a></li>
+          <li><a href="#disclaimer">10. Disclaimer</a></li>
+        </ul>
+      </div>
+
+      <div class="section" id="thesis">
+        <h2>1. THESIS</h2>
+        <p>
+          The internet forgets fast. Memes are born, go viral, and disappear
+          without context. Archive of Meme ($ARCH) turns the community into
+          curators of the canon: every day we nominate, vote, and archive an
+          immutable "Meme Capsule".
+        </p>
+        <div class="highlight-box">
+          💡 One-liner: "Your humor today, history forever."
+        </div>
+      </div>
+
+      <div class="section" id="product">
+        <h2>2. PRODUCT OVERVIEW</h2>
+        <h3>Daily Cycle:</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-badge">📝</div>
+            <div>
+              <strong>Nominations (00:00–16:00 UTC)</strong><br />
+              Submit a meme with metadata (image/link/author/license/context)
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-badge">🗳️</div>
+            <div>
+              <strong>Voting (16:00–20:00 UTC)</strong><br />
+              $ARCH holders vote for their favorites
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-badge">🏆</div>
+            <div>
+              <strong>Archive (20:00 UTC)</strong><br />
+              TOP 3 MEMES sealed in Daily Capsule with unique URL
+            </div>
+          </div>
+        </div>
+        <p>
+          <strong>Weekly Canon:</strong> Every Sunday, 1 meme from the week
+          enters the permanent Canon through special community vote.
+        </p>
+        <p>
+          <strong>Credentials:</strong> Earn soulbound badges - Nominator,
+          Curator, Canon-Keeper - for your contributions.
+        </p>
+      </div>
+
+      <div class="section" id="why">
+        <h2>3. WHY IT MATTERS</h2>
+        <ul>
+          <li>
+            <strong>Cultural:</strong> Preserves key pieces of internet history
+            with proper context and credit
+          </li>
+          <li>
+            <strong>Social:</strong> On-chain status earned through good
+            curation, not just token holdings
+          </li>
+          <li>
+            <strong>Technological:</strong> Open metadata + public API for
+            builders and researchers
+          </li>
+          <li>
+            <strong>Memetic:</strong> Simple daily ritual creates high retention
+            and community engagement
+          </li>
+        </ul>
+      </div>
+
+      <div class="section" id="tech">
+        <h2>4. TECHNICAL ARCHITECTURE</h2>
+        <h3>Core Components:</h3>
+        <ul>
+          <li>
+            <strong>Network:</strong> Solana blockchain for speed and low cost
+          </li>
+          <li>
+            <strong>Storage:</strong> Images and metadata on Arweave/IPFS for
+            permanence
+          </li>
+          <li><strong>Smart Contract:</strong> Minimalist on-chain program</li>
+        </ul>
+
+        <h3>Data Structure:</h3>
+        <div class="code-block">
+          DailyCapsule { date: YYYY-MM-DD, arweave_tx: hash, merkle_root: hash,
+          meme_count: 3 } WeeklyCanon { week_id: number, capsule_ref: hash,
+          meme_id: string }
+        </div>
+
+        <h3>Public API Endpoints:</h3>
+        <ul>
+          <li><code>/capsules/latest</code> - Today's capsule</li>
+          <li><code>/capsules/{date}</code> - Historical capsule</li>
+          <li><code>/canon</code> - Weekly canon entries</li>
+          <li><code>/leaderboard</code> - Top curators</li>
+        </ul>
+      </div>
+
+      <div class="section" id="token">
+        <h2>5. TOKEN ECONOMICS</h2>
+
+        <h3>Token Details:</h3>
+        <ul>
+          <li><strong>Ticker:</strong> $ARCH</li>
+          <li><strong>Supply:</strong> 1,000,000,000 (fixed)</li>
+          <li><strong>Tax:</strong> 0%</li>
+          <li><strong>Network:</strong> Solana</li>
+        </ul>
+
+        <h3>Distribution:</h3>
+        <div class="distribution-chart">
+          <div class="distribution-item">
+            <div class="distribution-percentage">90%</div>
+            <div class="distribution-label">Public Launch</div>
+          </div>
+          <div class="distribution-item">
+            <div class="distribution-percentage">5%</div>
+            <div class="distribution-label">Archive Treasury</div>
+          </div>
+          <div class="distribution-item">
+            <div class="distribution-percentage">5%</div>
+            <div class="distribution-label">Curation Fund</div>
+          </div>
+        </div>
+
+        <h3>Utility:</h3>
+        <ul>
+          <li>Access to daily voting mechanism</li>
+          <li>Participation in weekly canon selection</li>
+          <li>Treasury governance rights</li>
+          <li>API write access for builders</li>
+        </ul>
+
+        <div class="warning-box">
+          ⚠️ $ARCH is not an investment. It provides access to the Archive
+          platform and community governance. No profit expectations or yield
+          promises.
+        </div>
+      </div>
+
+      <div class="section" id="rules">
+        <h2>6. ARCHIVE RULES & ETHICS</h2>
+        <h3>Content Guidelines:</h3>
+        <ul>
+          <li>
+            <strong>Permissions:</strong> Priority to CC0/own content/explicit
+            permission
+          </li>
+          <li>
+            <strong>Transformation:</strong> Parody and transformative memes
+            accepted
+          </li>
+          <li>
+            <strong>Attribution:</strong> Original creators always credited when
+            known
+          </li>
+          <li>
+            <strong>Prohibited:</strong> No pornography, doxxing, or hate speech
+          </li>
+        </ul>
+
+        <h3>Takedown Process:</h3>
+        <p>
+          Legitimate copyright holders can request content removal. Public
+          mirror removed, on-chain record marked as "revoked" for transparency.
+        </p>
+      </div>
+
+      <div class="section" id="governance">
+        <h2>7. GOVERNANCE</h2>
+        <h3>Phase 1 (Launch):</h3>
+        <ul>
+          <li>Treasury multisig (3/5 signatures)</li>
+          <li>Signal voting via snapshot</li>
+          <li>Core team operational decisions</li>
+        </ul>
+
+        <h3>Phase 2 (Decentralized):</h3>
+        <ul>
+          <li>AIP (Archive Improvement Proposal) system</li>
+          <li>Quorum: ≥5% of active voters (30-day window)</li>
+          <li>Time-locked execution</li>
+        </ul>
+      </div>
+
+      <div class="section" id="security">
+        <h2>8. SECURITY & RISKS</h2>
+        <h3>Technical Security:</h3>
+        <ul>
+          <li>Upload sanitization and size limits</li>
+          <li>Rate limiting per wallet</li>
+          <li>Signature verification for votes</li>
+          <li>Redundant storage (IPFS + Arweave)</li>
+        </ul>
+
+        <h3>Risks:</h3>
+        <div class="warning-box">
+          ⚠️ IMPORTANT RISKS:
+          <ul style="margin-top: 10px">
+            <li>Extreme price volatility - you can lose everything</li>
+            <li>Smart contract bugs possible despite audits</li>
+            <li>Regulatory uncertainty in some jurisdictions</li>
+            <li>Platform adoption may never materialize</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="roadmap">
+        <h2>9. ROADMAP</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-badge">W1</div>
+            <div>
+              <strong>Week 1-2:</strong> Token launch, basic voting, daily
+              capsule system
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-badge">M1</div>
+            <div>
+              <strong>Month 1:</strong> Profiles, leaderboard, public API
+              (read-only)
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-badge">M2</div>
+            <div>
+              <strong>Month 2:</strong> Weekly Canon, Telegram/X bot, embeds
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-badge">M3</div>
+            <div>
+              <strong>Month 3+:</strong> Reputation system, thematic filters,
+              builder grants
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="disclaimer">
+        <h2>10. DISCLAIMER</h2>
+        <div class="warning-box">
+          This is a community and cultural project. Not financial advice. $ARCH
+          does not grant profit participation or return expectations. High risk,
+          high volatility. You can lose your entire investment. Comply with all
+          local laws before interacting. The team is not responsible for losses.
+          DYOR (Do Your Own Research).
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Join the Archive</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 20px">
+          Be part of internet history. Nominate, vote, and preserve the memes
+          that matter.
+        </p>
+        <div class="cta-buttons">
+          <a href="index.html" class="btn btn-secondary">Back to Home</a>
+          <a href="nominate.html" class="btn btn-primary">Start Nominating</a>
+          <a
+            href="https://github.com/archiveofmeme"
+            target="_blank"
+            class="btn btn-secondary"
+            >View on GitHub</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2025 Archive of Meme. Preserving internet culture, one meme at
+          a time.
+        </p>
+        <div class="footer-links">
+          <a href="#">X</a>
+          <a href="#">Discord</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="arch-decoration" title="Hi! I'm Arch!"></div>
+
+    <script src="js/wallet-simple.js"></script>
+    <script src="js/arch-random.js"></script>
+    <script>
+      // Smooth scroll to sections
+      document.querySelectorAll(".toc a").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

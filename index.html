@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Archive of Meme - The digital museum where the community preserves the best internet memes for posterity"
+    />
+    <title>Archive of Meme ($ARCH) - Preserving Internet History</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <a href="index.html" class="logo-link">
+            <img
+              src="assets/img/Logo.png"
+              alt="Archive of Meme"
+              class="logo"
+            />
+          </a>
+          <h1>Archive of Meme</h1>
+          <span class="token-badge">$ARCH</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="nominate.html">Nominate</a></li>
+          <li><a href="vote.html">Vote</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="whitepaper.html">Whitepaper</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+        <button id="connectWallet" class="btn-wallet">Connect Wallet</button>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container">
+        <h2 class="hero-title">The Digital Meme Museum</h2>
+        <p class="hero-subtitle">
+          Every day, the community chooses the TOP 3 memes to preserve them
+          forever in our digital $Archive
+        </p>
+
+        <div class="phase-indicator">
+          <div class="phase-bar">
+            <div class="phase-progress" id="phaseProgress"></div>
+          </div>
+          <div class="phase-info">
+            <span id="currentPhase">Nomination Phase</span>
+            <span id="phaseTimer">15:23:45 remaining</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="nominate.html" class="btn btn-primary">Nominate a Meme</a>
+          <a href="archive.html" class="btn btn-secondary">View Archive</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Today's Nominations</h3>
+            <p class="stat-number" id="todayNominations">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Active Votes</h3>
+            <p class="stat-number" id="activeVotes">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Total Archived</h3>
+            <p class="stat-number" id="totalArchived">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Active Holders</h3>
+            <p class="stat-number" id="activeHolders">0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="podium-section">
+      <div class="container">
+        <h2 class="section-title">🏆 Yesterday's Winners</h2>
+        <div class="podium-container" id="yesterdayPodium">
+          <div class="podium-place silver">
+            <div class="medal-icon">🥈</div>
+            <h3>Silver</h3>
+            <div class="loading">Loading...</div>
+          </div>
+          <div class="podium-place gold">
+            <div class="medal-icon">🥇</div>
+            <h3>Gold</h3>
+            <div class="loading">Loading...</div>
+          </div>
+          <div class="podium-place bronze">
+            <div class="medal-icon">🥉</div>
+            <h3>Bronze</h3>
+            <div class="loading">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="recent-archives">
+      <div class="container">
+        <h2 class="section-title">📜 Recent Archives</h2>
+        <div class="archives-grid" id="recentArchives">
+          <div class="loading">Loading archives...</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Nominate</h3>
+            <p>00:00 - 16:00 UTC</p>
+            <p>Submit the best memes you find on the internet</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Vote</h3>
+            <p>16:00 - 20:00 UTC</p>
+            <p>$ARCH holders vote for their favorites</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Archive</h3>
+            <p>20:00 UTC</p>
+            <p>The TOP 3 memes are preserved forever</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2025 Archive of Meme. Preserving internet culture, one meme at
+          a time.
+        </p>
+        <div class="footer-links">
+          <a href="#">X</a>
+          <a href="#">Discord</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="arch-decoration" title="Hi! I'm Arch!"></div>
+
+    <script src="js/wallet-simple.js"></script>
+    <script src="js/arch-random.js"></script>
+  </body>
+</html>

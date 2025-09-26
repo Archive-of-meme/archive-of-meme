@@ -1,0 +1,40 @@
+# Configuration files with sensitive data
+api/pinata-config.php
+api/config-production.php
+
+# Uploaded files (temporary)
+uploads/memes/*
+!uploads/memes/.gitkeep
+
+# Database dumps
+*.sql
+database/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Temporary files
+*.tmp
+*.cache
+temp/
+
+# Backup files
+*.backup
+*.bak
+*~
+
+# Documentation drafts
+docs/drafts/

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archive - Archive of Meme</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/archive.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <a href="index.html" class="logo-link">
+            <img
+              src="assets/img/Logo.png"
+              alt="Archive of Meme"
+              class="logo"
+            />
+          </a>
+          <h1>Archive of Meme</h1>
+          <span class="token-badge">$ARCH</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="nominate.html">Nominate</a></li>
+          <li><a href="vote.html">Vote</a></li>
+          <li><a href="archive.html" class="active">Archive</a></li>
+          <li><a href="whitepaper.html">Whitepaper</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+        <button class="wallet-btn" id="connectWallet">Connect Wallet</button>
+      </div>
+    </nav>
+
+    <main class="archive-container">
+      <div class="container">
+        <section class="archive-header">
+          <h1>Meme Time Capsules</h1>
+          <p>
+            Explore the daily archives of internet culture preserved forever
+          </p>
+
+          <div class="archive-filters">
+            <div class="filter-group">
+              <label for="monthFilter">Month:</label>
+              <select id="monthFilter">
+                <option value="">All Months</option>
+                <option value="09">September 2025</option>
+                <option value="08">August 2025</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="sortBy">Sort by:</label>
+              <select id="sortBy">
+                <option value="date-desc">Newest First</option>
+                <option value="date-asc">Oldest First</option>
+                <option value="votes">Most Votes</option>
+              </select>
+            </div>
+            <div class="search-box">
+              <input
+                type="text"
+                id="searchArchive"
+                placeholder="Search memes..."
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="archive-grid" id="archiveGrid">
+          <div class="loading-state">
+            <div class="loader"></div>
+            <p>Loading archives...</p>
+          </div>
+        </section>
+
+        <div class="pagination" id="pagination">
+          <button class="page-btn" id="prevPage">Previous</button>
+          <span id="pageInfo">Page 1 of 1</span>
+          <button class="page-btn" id="nextPage">Next</button>
+        </div>
+      </div>
+    </main>
+
+    <div class="modal" id="capsuleModal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="capsule-detail" id="capsuleDetail"></div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2025 Archive of Meme. Preserving internet culture, one meme at
+          a time.
+        </p>
+        <div class="footer-links">
+          <a href="#">X</a>
+          <a href="#">Discord</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="arch-decoration" title="Hi! I'm Arch!"></div>
+
+    <script src="js/wallet-simple.js"></script>
+    <script src="js/arch-random.js"></script>
+    <script src="js/archive.js"></script>
+  </body>
+</html>

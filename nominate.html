@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Nominate memes for the Archive - Submit the best memes to be preserved forever"
+    />
+    <title>Nominate - Archive of Meme ($ARCH)</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .nominate-hero {
+        background: var(--color-white);
+        border: 4px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        margin: 40px 20px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: var(--shadow-sketch);
+        transform: rotate(0.3deg);
+      }
+
+      .nominate-form {
+        background: var(--color-paper);
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 40px;
+        max-width: 600px;
+        margin: 40px auto;
+        box-shadow: var(--shadow-sketch);
+        transform: rotate(-0.5deg);
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .form-label {
+        display: block;
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        color: var(--color-ink);
+      }
+
+      .form-input,
+      .form-textarea {
+        width: 100%;
+        padding: 12px;
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        font-family: var(--font-body);
+        font-size: 1rem;
+        background: var(--color-white);
+        transition: var(--transition);
+      }
+
+      .form-input:focus,
+      .form-textarea:focus {
+        outline: none;
+        box-shadow: 3px 3px 0px var(--color-gold);
+        transform: translate(-2px, -2px);
+      }
+
+      .form-textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .upload-area {
+        border: 3px dashed var(--color-ink);
+        border-radius: var(--radius-sketch);
+        padding: 40px;
+        text-align: center;
+        background: var(--color-white);
+        cursor: pointer;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .upload-area:hover {
+        background: var(--color-paper);
+        transform: rotate(1deg);
+      }
+
+      .upload-area.dragover {
+        background: var(--color-gold);
+        transform: scale(1.02);
+      }
+
+      .upload-icon {
+        font-size: 3rem;
+        margin-bottom: 10px;
+      }
+
+      .upload-text {
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--color-ink);
+      }
+
+      .upload-subtext {
+        font-family: var(--font-body);
+        color: var(--color-ink-light);
+        margin-top: 10px;
+      }
+
+      .file-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .preview-container {
+        margin-top: 20px;
+        display: none;
+      }
+
+      .preview-container.active {
+        display: block;
+      }
+
+      .preview-image {
+        max-width: 100%;
+        max-height: 300px;
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        box-shadow: 3px 3px 0px var(--color-ink);
+      }
+
+      .remove-preview {
+        margin-top: 10px;
+        background: var(--color-accent);
+        color: var(--color-white);
+        border: 2px solid var(--color-ink);
+        padding: 8px 15px;
+        border-radius: var(--radius-sketch);
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 2px 2px 0px var(--color-ink);
+      }
+
+      .or-divider {
+        text-align: center;
+        margin: 30px 0;
+        position: relative;
+      }
+
+      .or-divider::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--color-ink);
+        transform: translateY(-50%);
+      }
+
+      .or-text {
+        background: var(--color-paper);
+        padding: 0 20px;
+        font-family: var(--font-heading);
+        font-size: 1.2rem;
+        color: var(--color-ink);
+        position: relative;
+        display: inline-block;
+      }
+
+      .nominations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 40px 20px;
+      }
+
+      .nomination-card {
+        background: var(--color-white);
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        overflow: hidden;
+        box-shadow: 3px 3px 0px var(--color-ink);
+        transition: var(--transition);
+        transform: rotate(calc(var(--card-rotate, 0) * 1deg));
+      }
+
+      .nomination-card:nth-child(odd) {
+        --card-rotate: -0.5;
+      }
+
+      .nomination-card:nth-child(even) {
+        --card-rotate: 0.5;
+      }
+
+      .nomination-card:hover {
+        transform: translate(-3px, -3px) rotate(0deg);
+        box-shadow: 6px 6px 0px var(--color-ink);
+      }
+
+      .nomination-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 3px solid var(--color-ink);
+      }
+
+      .nomination-info {
+        padding: 20px;
+      }
+
+      .nomination-title {
+        font-family: var(--font-heading);
+        font-size: 1.3rem;
+        color: var(--color-ink);
+        margin-bottom: 10px;
+      }
+
+      .nomination-meta {
+        font-family: var(--font-sketch);
+        color: var(--color-ink-light);
+        font-size: 0.9rem;
+      }
+
+      .nomination-time {
+        background: var(--color-gold);
+        color: var(--color-ink);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: inline-block;
+        margin-top: 10px;
+        border: 2px solid var(--color-ink);
+      }
+
+      .phase-warning {
+        background: var(--color-accent);
+        color: var(--color-white);
+        padding: 20px;
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        margin: 20px;
+        text-align: center;
+        font-family: var(--font-sketch);
+        font-weight: 700;
+        box-shadow: 3px 3px 0px var(--color-ink);
+        display: none;
+      }
+
+      .phase-warning.active {
+        display: block;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background: var(--color-gold);
+        color: var(--color-ink);
+        border: 3px solid var(--color-ink);
+        border-radius: var(--radius-sketch);
+        font-family: var(--font-heading);
+        font-size: 1.3rem;
+        cursor: pointer;
+        box-shadow: 3px 3px 0px var(--color-ink);
+        transition: var(--transition);
+        transform: rotate(-1deg);
+      }
+
+      .submit-btn:hover:not(:disabled) {
+        transform: translate(-3px, -3px) rotate(-2deg);
+        box-shadow: 6px 6px 0px var(--color-ink);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <a href="index.html" class="logo-link">
+            <img
+              src="assets/img/Logo.png"
+              alt="Archive of Meme"
+              class="logo"
+            />
+          </a>
+          <h1>Archive of Meme</h1>
+          <span class="token-badge">$ARCH</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="nominate.html" class="active">Nominate</a></li>
+          <li><a href="vote.html">Vote</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="whitepaper.html">Whitepaper</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+        <button id="connectWallet" class="btn-wallet">Connect Wallet</button>
+      </div>
+    </nav>
+
+    <div class="nominate-hero">
+      <h1
+        style="
+          font-family: var(--font-heading);
+          font-size: 3rem;
+          color: var(--color-ink);
+          text-shadow: 3px 3px 0px var(--color-gold);
+          transform: rotate(-1deg);
+          margin-bottom: 20px;
+        "
+      >
+        📝 Nominate a Meme
+      </h1>
+      <p
+        style="
+          font-family: var(--font-sketch);
+          font-size: 1.3rem;
+          color: var(--color-ink-light);
+        "
+      >
+        Submit the best memes you find on the internet for today's archive
+      </p>
+      <div class="phase-indicator" style="max-width: 400px; margin: 20px auto">
+        <div class="phase-bar">
+          <div class="phase-progress" id="phaseProgress"></div>
+        </div>
+        <div class="phase-info">
+          <span id="currentPhase">Nomination Phase</span>
+          <span id="phaseTimer">15:23:45 remaining</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-warning" id="phaseWarning">
+      ⚠️ Nominations are closed! Voting phase is active. Come back tomorrow to
+      nominate.
+    </div>
+
+    <div class="nominate-form" id="nominateForm">
+      <h2
+        style="
+          font-family: var(--font-heading);
+          font-size: 2rem;
+          color: var(--color-ink);
+          margin-bottom: 30px;
+          text-align: center;
+        "
+      >
+        Submit Your Meme
+      </h2>
+
+      <form id="memeForm">
+        <div class="form-group">
+          <label class="form-label">Meme Title *</label>
+          <input
+            type="text"
+            class="form-input"
+            id="memeTitle"
+            placeholder="Give your meme a catchy title..."
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Upload Meme Image *</label>
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📸</div>
+            <div class="upload-text">Click or drag to upload</div>
+            <div class="upload-subtext">JPG, PNG or GIF • Max 5MB</div>
+            <input
+              type="file"
+              class="file-input"
+              id="fileInput"
+              accept="image/*"
+            />
+          </div>
+          <div class="preview-container" id="previewContainer">
+            <img class="preview-image" id="previewImage" alt="Preview" />
+            <br />
+            <button
+              type="button"
+              class="remove-preview"
+              onclick="removePreview()"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+
+        <div class="or-divider">
+          <span class="or-text">OR</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Meme URL</label>
+          <input
+            type="url"
+            class="form-input"
+            id="memeUrl"
+            placeholder="https://example.com/meme.jpg or https://x.com/..."
+          />
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="fetchFromUrl()"
+            style="margin-top: 10px; padding: 10px 20px"
+          >
+            🔍 Fetch Image from URL
+          </button>
+          <div id="urlPreview" style="margin-top: 20px; display: none">
+            <img
+              id="urlPreviewImage"
+              style="
+                max-width: 100%;
+                max-height: 300px;
+                border: 3px solid var(--color-ink);
+                border-radius: var(--radius-sketch);
+              "
+            />
+            <p
+              style="
+                margin-top: 10px;
+                font-family: var(--font-sketch);
+                color: var(--color-ink-light);
+              "
+            >
+              ✓ Image detected! It will be saved when you submit.
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Source / Credit</label>
+          <input
+            type="text"
+            class="form-input"
+            id="memeSource"
+            placeholder="Original creator or source (if known)"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Context / Description</label>
+          <textarea
+            class="form-textarea"
+            id="memeContext"
+            placeholder="Add some context about this meme..."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          NOMINATE THIS MEME
+        </button>
+      </form>
+    </div>
+
+    <section style="padding: 60px 0">
+      <div class="container">
+        <h2 class="section-title">🎯 Today's Nominations</h2>
+        <div class="nominations-grid" id="nominationsGrid">
+          <!-- Example cards - these would be loaded dynamically -->
+          <div class="nomination-card">
+            <div
+              style="
+                width: 100%;
+                height: 200px;
+                background: var(--color-paper);
+                border-bottom: 3px solid var(--color-ink);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--font-sketch);
+                color: var(--color-ink-light);
+              "
+            >
+              [Meme Image]
+            </div>
+            <div class="nomination-info">
+              <div class="nomination-title">Wojak at McDonald's</div>
+              <div class="nomination-meta">by 0x1234...5678</div>
+              <div class="nomination-time">2 hours ago</div>
+            </div>
+          </div>
+          <div class="nomination-card">
+            <div
+              style="
+                width: 100%;
+                height: 200px;
+                background: var(--color-paper);
+                border-bottom: 3px solid var(--color-ink);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--font-sketch);
+                color: var(--color-ink-light);
+              "
+            >
+              [Meme Image]
+            </div>
+            <div class="nomination-info">
+              <div class="nomination-title">This is Fine 2025</div>
+              <div class="nomination-meta">by 0xabcd...efgh</div>
+              <div class="nomination-time">3 hours ago</div>
+            </div>
+          </div>
+          <div class="nomination-card">
+            <div
+              style="
+                width: 100%;
+                height: 200px;
+                background: var(--color-paper);
+                border-bottom: 3px solid var(--color-ink);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--font-sketch);
+                color: var(--color-ink-light);
+              "
+            >
+              [Meme Image]
+            </div>
+            <div class="nomination-info">
+              <div class="nomination-title">Pepe the Philosopher</div>
+              <div class="nomination-meta">by 0x9876...5432</div>
+              <div class="nomination-time">5 hours ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2025 Archive of Meme. Preserving internet culture, one meme at
+          a time.
+        </p>
+        <div class="footer-links">
+          <a href="#">X</a>
+          <a href="#">Discord</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="arch-decoration" title="Hi! I'm Arch!"></div>
+
+    <script src="js/arch-random.js"></script>
+    <script src="js/wallet-simple.js"></script>
+    <script>
+      // File upload handling
+      const fileInput = document.getElementById("fileInput");
+      const uploadArea = document.getElementById("uploadArea");
+      const previewContainer = document.getElementById("previewContainer");
+      const previewImage = document.getElementById("previewImage");
+
+      // Drag and drop
+      uploadArea.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        uploadArea.classList.add("dragover");
+      });
+
+      uploadArea.addEventListener("dragleave", () => {
+        uploadArea.classList.remove("dragover");
+      });
+
+      uploadArea.addEventListener("drop", (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove("dragover");
+
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          handleFile(files[0]);
+        }
+      });
+
+      fileInput.addEventListener("change", (e) => {
+        if (e.target.files.length > 0) {
+          handleFile(e.target.files[0]);
+        }
+      });
+
+      function handleFile(file) {
+        // Check file size (5MB max)
+        if (file.size > 5 * 1024 * 1024) {
+          alert("File too large! Maximum size is 5MB");
+          return;
+        }
+
+        // Check file type
+        if (!file.type.startsWith("image/")) {
+          alert("Please upload an image file");
+          return;
+        }
+
+        // Show preview
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImage.src = e.target.result;
+          previewContainer.classList.add("active");
+          uploadArea.style.display = "none";
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function removePreview() {
+        previewContainer.classList.remove("active");
+        uploadArea.style.display = "block";
+        fileInput.value = "";
+        previewImage.src = "";
+      }
+
+      // Fetch image from URL
+      async function fetchFromUrl() {
+        const urlInput = document.getElementById("memeUrl");
+        const url = urlInput.value.trim();
+
+        if (!url) {
+          showNotification("Please enter a URL first", "warning");
+          return;
+        }
+
+        // Check if it's a direct image URL
+        const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+        const isDirectImage = imageExtensions.some((ext) =>
+          url.toLowerCase().includes(ext)
+        );
+
+        if (isDirectImage) {
+          // Direct image URL - show preview immediately
+          const urlPreview = document.getElementById("urlPreview");
+          const urlPreviewImage = document.getElementById("urlPreviewImage");
+
+          urlPreviewImage.src = url;
+          urlPreview.style.display = "block";
+
+          // Hide the upload area since we have a URL
+          uploadArea.style.display = "none";
+
+          showNotification("Image loaded from URL!", "success");
+        } else {
+          // It's a webpage URL (X, Reddit, etc.)
+          showNotification("Fetching image from webpage...", "info");
+
+          // In a real implementation, the backend would:
+          // 1. Fetch the webpage
+          // 2. Extract Open Graph image or X card image
+          // 3. Return the image URL
+
+          // For now, we'll show a message
+          showNotification(
+            "Website URLs will be supported soon! Please use direct image URLs for now.",
+            "warning"
+          );
+        }
+      }
+
+      // Form submission
+      document
+        .getElementById("memeForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          // Check if wallet is connected
+          // IMPORTANT: According to whitepaper, you need wallet to nominate (but NOT $ARCH)
+          // Only voting requires $ARCH tokens
+          if (!walletUtils.getAddress()) {
+            showNotification(
+              "Please connect your wallet to nominate (no $ARCH required)",
+              "warning"
+            );
+            return;
+          }
+
+          // Get form data
+          const title = document.getElementById("memeTitle").value;
+          const url = document.getElementById("memeUrl").value;
+          const source = document.getElementById("memeSource").value;
+          const context = document.getElementById("memeContext").value;
+          const file = fileInput.files[0];
+
+          if (!file && !url) {
+            showNotification(
+              "Please upload an image or provide a URL",
+              "warning"
+            );
+            return;
+          }
+
+          // Here you would submit to your backend
+          console.log("Submitting nomination:", {
+            title,
+            url,
+            source,
+            context,
+            file,
+          });
+
+          showNotification("Meme nominated successfully!", "success");
+
+          // Reset form
+          document.getElementById("memeForm").reset();
+          removePreview();
+        });
+
+      // Check phase and disable form if not in nomination phase
+      function checkPhase() {
+        const now = new Date();
+        const utcHour = now.getUTCHours();
+
+        if (utcHour >= 16) {
+          // Not in nomination phase
+          document.getElementById("nominateForm").style.opacity = "0.5";
+          document.getElementById("submitBtn").disabled = true;
+          document.getElementById("phaseWarning").classList.add("active");
+        }
+      }
+
+      // Check phase on load
+      checkPhase();
+      // Check phase every minute
+      setInterval(checkPhase, 60000);
+    </script>
+  </body>
+</html>

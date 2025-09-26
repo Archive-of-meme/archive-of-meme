@@ -1,0 +1,17 @@
+# Cron Job Setup for Archive of Meme
+# Add this line to your server's crontab to run the archive script daily at 20:00 UTC
+
+# For production server (runs at 20:00 UTC every day):
+0 20 * * * /usr/bin/php /path/to/archive-of-meme/api/daily-archive.php >> /path/to/logs/archive.log 2>&1
+
+# Alternative using wget if PHP CLI is not available:
+0 20 * * * wget -q -O - https://yourdomain.com/api/daily-archive.php >> /path/to/logs/archive.log 2>&1
+
+# For testing (runs every 5 minutes):
+*/5 * * * * /usr/bin/php /path/to/archive-of-meme/api/daily-archive.php >> /path/to/logs/archive.log 2>&1
+
+# Notes:
+# 1. Replace /path/to/ with your actual server paths
+# 2. Make sure the logs directory exists and is writable
+# 3. The archive script will only work during the archive phase (20:00-00:00 UTC)
+# 4. For Hostinger, use their Cron Jobs panel in hPanel

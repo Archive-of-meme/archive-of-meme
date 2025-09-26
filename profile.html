@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Archive of Meme</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/profile.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <a href="index.html" class="logo-link">
+            <img
+              src="assets/img/Logo.png"
+              alt="Archive of Meme"
+              class="logo"
+            />
+          </a>
+          <h1>Archive of Meme</h1>
+          <span class="token-badge">$ARCH</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="nominate.html">Nominate</a></li>
+          <li><a href="vote.html">Vote</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="whitepaper.html">Whitepaper</a></li>
+          <li><a href="profile.html" class="active">Profile</a></li>
+        </ul>
+        <button class="wallet-btn" id="connectWallet">Connect Wallet</button>
+      </div>
+    </nav>
+
+    <main class="profile-container">
+      <div class="container">
+        <div class="profile-not-connected" id="notConnected">
+          <div class="connect-prompt">
+            <h2>Welcome to Your Profile</h2>
+            <p>
+              Connect your wallet to view your meme achievements and statistics
+            </p>
+            <button class="connect-btn" onclick="connectWallet()">
+              Connect Wallet
+            </button>
+          </div>
+        </div>
+
+        <div class="profile-content" id="profileContent" style="display: none">
+          <section class="profile-header">
+            <div class="profile-avatar">
+              <div class="avatar-placeholder">👤</div>
+            </div>
+            <div class="profile-info">
+              <h1 id="profileWallet">0x0000...0000</h1>
+              <div class="profile-stats">
+                <div class="stat">
+                  <span class="stat-value" id="archBalance">0</span>
+                  <span class="stat-label">$ARCH</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-value" id="memberSince">New</span>
+                  <span class="stat-label">Member Since</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="achievements-section">
+            <h2>Achievements & Badges</h2>
+            <div class="badges-grid">
+              <div class="badge" data-tooltip="Nominated your first meme">
+                <div class="badge-icon">🎯</div>
+                <div class="badge-name">First Nomination</div>
+              </div>
+              <div class="badge" data-tooltip="Voted in 10 elections">
+                <div class="badge-icon">🗳️</div>
+                <div class="badge-name">Active Voter</div>
+              </div>
+              <div class="badge" data-tooltip="Won a gold medal">
+                <div class="badge-icon">🏆</div>
+                <div class="badge-name">Gold Winner</div>
+              </div>
+              <div
+                class="badge locked"
+                data-tooltip="Nominate 100 memes to unlock"
+              >
+                <div class="badge-icon">🔒</div>
+                <div class="badge-name">Meme Master</div>
+              </div>
+              <div
+                class="badge locked"
+                data-tooltip="Vote in 50 elections to unlock"
+              >
+                <div class="badge-icon">🔒</div>
+                <div class="badge-name">Democracy Champion</div>
+              </div>
+              <div
+                class="badge locked"
+                data-tooltip="Win 10 gold medals to unlock"
+              >
+                <div class="badge-icon">🔒</div>
+                <div class="badge-name">Hall of Fame</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="activity-section">
+            <h2>Your Activity</h2>
+            <div class="activity-tabs">
+              <button class="tab-btn active" data-tab="nominations">
+                Nominations
+              </button>
+              <button class="tab-btn" data-tab="votes">Voting History</button>
+              <button class="tab-btn" data-tab="wins">Wins</button>
+            </div>
+
+            <div class="tab-content active" id="nominations">
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-date">September 24, 2024</div>
+                  <div class="activity-details">
+                    <h4>Wojak Thinking</h4>
+                    <p>
+                      Status:
+                      <span class="status-badge archived">Archived</span>
+                    </p>
+                    <p>Rank: 🥇 Gold</p>
+                    <p>Votes: 567</p>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-date">September 22, 2024</div>
+                  <div class="activity-details">
+                    <h4>This is Fine</h4>
+                    <p>
+                      Status:
+                      <span class="status-badge archived">Archived</span>
+                    </p>
+                    <p>Rank: 🥈 Silver</p>
+                    <p>Votes: 445</p>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-date">September 20, 2024</div>
+                  <div class="activity-details">
+                    <h4>Galaxy Brain</h4>
+                    <p>
+                      Status:
+                      <span class="status-badge pending">Not Selected</span>
+                    </p>
+                    <p>Votes: 123</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-content" id="votes">
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-date">September 24, 2024</div>
+                  <div class="activity-details">
+                    <h4>Voted for: Drake Format</h4>
+                    <p>Result: 🥉 Bronze</p>
+                  </div>
+                </div>
+                <div class="activity-item">
+                  <div class="activity-date">September 23, 2024</div>
+                  <div class="activity-details">
+                    <h4>Voted for: Woman Yelling at Cat</h4>
+                    <p>Result: 🥇 Gold</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-content" id="wins">
+              <div class="activity-list">
+                <div class="activity-item winner gold">
+                  <div class="activity-date">September 24, 2024</div>
+                  <div class="activity-details">
+                    <h4>🥇 Gold Medal - Wojak Thinking</h4>
+                    <p>567 votes</p>
+                  </div>
+                </div>
+                <div class="activity-item winner silver">
+                  <div class="activity-date">September 22, 2024</div>
+                  <div class="activity-details">
+                    <h4>🥈 Silver Medal - This is Fine</h4>
+                    <p>445 votes</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="stats-overview">
+            <h2>Statistics Overview</h2>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon">📝</div>
+                <div class="stat-number">12</div>
+                <div class="stat-title">Total Nominations</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">🗳️</div>
+                <div class="stat-number">28</div>
+                <div class="stat-title">Times Voted</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number">2</div>
+                <div class="stat-title">Medals Won</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-number">1,234</div>
+                <div class="stat-title">Total Votes Received</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2025 Archive of Meme. Preserving internet culture, one meme at
+          a time.
+        </p>
+        <div class="footer-links">
+          <a href="#">X</a>
+          <a href="#">Discord</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="arch-decoration" title="Hi! I'm Arch!"></div>
+
+    <script src="js/wallet-simple.js"></script>
+    <script src="js/arch-random.js"></script>
+    <script src="js/profile.js"></script>
+  </body>
+</html>

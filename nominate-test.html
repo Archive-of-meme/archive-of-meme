@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nominate (TEST MODE) - Archive of Meme</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/nominate.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <a href="index.html" class="logo-link">
+            <img
+              src="assets/img/Logo.png"
+              alt="Archive of Meme"
+              class="logo"
+            />
+          </a>
+          <h1>Archive of Meme</h1>
+          <span class="token-badge">$ARCH</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <a href="nominate-test.html" class="active">Nominate (TEST)</a>
+          </li>
+          <li><a href="vote-test.html">Vote (TEST)</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="whitepaper.html">Whitepaper</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+        <button class="wallet-btn" id="connectWallet">Connect Wallet</button>
+      </div>
+    </nav>
+
+    <section class="nominate-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>📝 Nominate Your Meme (TEST MODE - NO TIME RESTRICTIONS)</h2>
+          <p
+            style="
+              background: #4caf50;
+              color: white;
+              padding: 10px;
+              border-radius: 5px;
+            "
+          >
+            ✅ TEST MODE ACTIVE - You can nominate anytime!
+          </p>
+        </div>
+
+        <div class="nominate-form" id="nominateForm">
+          <form id="memeForm" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="memeTitle">Meme Title</label>
+              <input
+                type="text"
+                id="memeTitle"
+                name="title"
+                class="form-input"
+                placeholder="Enter a catchy title for your meme"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Upload Your Meme</label>
+              <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📸</div>
+                <p>Drag & drop your meme here or click to browse</p>
+                <p class="upload-info">Supports: JPG, PNG, GIF (Max 5MB)</p>
+                <input
+                  type="file"
+                  id="fileInput"
+                  name="image"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+              <div id="preview" class="preview-container"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="walletAddress">Your Wallet Address</label>
+              <input
+                type="text"
+                id="walletAddress"
+                name="wallet"
+                class="form-input"
+                placeholder="Enter wallet or any test address"
+                required
+              />
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Nomination</button>
+          </form>
+
+          <div id="statusMessage"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Archive of Meme. TEST MODE ACTIVE</p>
+        <div class="footer-links">
+          <a href="#">X</a>
+          <a href="#">Discord</a>
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="arch-decoration" title="Hi! I'm Arch!"></div>
+
+    <script src="js/arch-random.js"></script>
+    <script>
+      // Simple wallet connection for testing
+      document
+        .getElementById("connectWallet")
+        .addEventListener("click", function () {
+          const testWallet = prompt(
+            "Enter any test wallet address (or press OK for random):"
+          );
+          const wallet =
+            testWallet ||
+            "TEST" + Math.random().toString(36).substr(2, 34).toUpperCase();
+          document.getElementById("walletAddress").value = wallet;
+          this.textContent = wallet.substr(0, 4) + "..." + wallet.substr(-4);
+          alert("✅ Wallet connected (TEST MODE)");
+        });
+
+      // Upload handling
+      const uploadArea = document.getElementById("uploadArea");
+      const fileInput = document.getElementById("fileInput");
+      const preview = document.getElementById("preview");
+
+      uploadArea.addEventListener("click", () => fileInput.click());
+
+      uploadArea.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        uploadArea.classList.add("dragover");
+      });
+
+      uploadArea.addEventListener("dragleave", () => {
+        uploadArea.classList.remove("dragover");
+      });
+
+      uploadArea.addEventListener("drop", (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove("dragover");
+        const file = e.dataTransfer.files[0];
+        handleFile(file);
+      });
+
+      fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        handleFile(file);
+      });
+
+      function handleFile(file) {
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+          alert("Please upload an image file");
+          return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+          alert("File too large. Max size is 5MB");
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          preview.innerHTML = `
+                    <h4>Preview:</h4>
+                    <img src="${e.target.result}" alt="Preview" style="max-width: 300px; max-height: 300px; border-radius: 10px;">
+                `;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // Form submission
+      document
+        .getElementById("memeForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const formData = new FormData();
+          formData.append("title", document.getElementById("memeTitle").value);
+          formData.append(
+            "wallet",
+            document.getElementById("walletAddress").value
+          );
+
+          const file = fileInput.files[0];
+          if (!file) {
+            alert("Please select an image");
+            return;
+          }
+          formData.append("image", file);
+
+          const statusDiv = document.getElementById("statusMessage");
+          statusDiv.innerHTML = '<p style="color: orange;">⏳ Uploading...</p>';
+
+          try {
+            const response = await fetch(
+              "/archive-of-meme/api/nominate-test.php",
+              {
+                method: "POST",
+                body: formData,
+              }
+            );
+
+            const result = await response.json();
+
+            if (result.success) {
+              statusDiv.innerHTML = `<p style="color: green;">✅ ${
+                result.message || "Meme nominated successfully!"
+              }</p>`;
+              document.getElementById("memeForm").reset();
+              preview.innerHTML = "";
+            } else {
+              statusDiv.innerHTML = `<p style="color: red;">❌ ${
+                result.error || "Error nominating meme"
+              }</p>`;
+            }
+          } catch (error) {
+            statusDiv.innerHTML = `<p style="color: red;">❌ Error: ${error.message}</p>`;
+          }
+        });
+    </script>
+  </body>
+</html>
