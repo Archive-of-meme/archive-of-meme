@@ -699,6 +699,62 @@
           }
         });
 
+      // Update phase indicator - same logic as home page
+      function updatePhaseIndicator() {
+        const now = new Date();
+        const utcHour = now.getUTCHours();
+        const utcMinute = now.getUTCMinutes();
+        const utcSecond = now.getUTCSeconds();
+
+        let phase, nextPhaseHour, phaseProgress;
+
+        if (utcHour < 16) {
+          phase = 'Nomination Phase';
+          nextPhaseHour = 16;
+          phaseProgress = (utcHour * 60 + utcMinute) / (16 * 60) * 100;
+        } else if (utcHour < 20) {
+          phase = 'Voting Phase';
+          nextPhaseHour = 20;
+          phaseProgress = ((utcHour - 16) * 60 + utcMinute) / (4 * 60) * 100;
+        } else {
+          phase = 'Archive Phase';
+          nextPhaseHour = 24;
+          phaseProgress = ((utcHour - 20) * 60 + utcMinute) / (4 * 60) * 100;
+        }
+
+        document.getElementById('currentPhase').textContent = phase;
+
+        // Calculate time remaining
+        let hoursRemaining, minutesRemaining, secondsRemaining;
+        if (utcHour >= 20) {
+          // Archive phase ends at 00:00 UTC (next day)
+          hoursRemaining = 23 - utcHour;
+          minutesRemaining = 59 - utcMinute;
+          secondsRemaining = 59 - utcSecond;
+        } else if (nextPhaseHour === 24) {
+          hoursRemaining = 23 - utcHour + 16;
+          minutesRemaining = 59 - utcMinute;
+          secondsRemaining = 59 - utcSecond;
+        } else {
+          hoursRemaining = nextPhaseHour - utcHour - 1;
+          minutesRemaining = 59 - utcMinute;
+          secondsRemaining = 59 - utcSecond;
+        }
+
+        const timeString = `${hoursRemaining.toString().padStart(2, '0')}:${minutesRemaining.toString().padStart(2, '0')}:${secondsRemaining.toString().padStart(2, '0')} remaining`;
+        document.getElementById('phaseTimer').textContent = timeString;
+
+        // Update progress bar
+        const progressBar = document.getElementById('phaseProgress');
+        if (progressBar) {
+          progressBar.style.width = `${phaseProgress}%`;
+        }
+      }
+
+      // Initialize phase timer
+      updatePhaseIndicator();
+      setInterval(updatePhaseIndicator, 1000);
+
       // Check phase and show current phase info
       function checkPhase() {
         const now = new Date();
