@@ -233,18 +233,23 @@
       // Load stats (will fetch from API)
       async function loadStats() {
         try {
-          // Set initial values to 0
-          document.getElementById('todayNominations').textContent = '0';
-          document.getElementById('activeVotes').textContent = '0';
-          document.getElementById('totalArchived').textContent = '0';
-          document.getElementById('activeHolders').textContent = '0';
+          // Fetch real stats from API
+          const response = await fetch('/api/get-stats.php');
+          const data = await response.json();
 
-          // TODO: Fetch real stats from API when available
-          // const response = await fetch('/api/get-stats.php');
-          // const data = await response.json();
-          // Update with real data
+          if (data.success) {
+            // Update stats with real data
+            document.getElementById('todayNominations').textContent = data.stats.todayNominations || '0';
+            document.getElementById('activeVotes').textContent = data.stats.activeVotes || '0';
+            document.getElementById('totalArchived').textContent = data.stats.totalArchived || '0';
+            document.getElementById('activeHolders').textContent = data.stats.activeHolders || '0';
+          } else {
+            // If API fails, keep showing 0
+            console.error('Stats API error:', data.error);
+          }
         } catch (error) {
           console.error('Error loading stats:', error);
+          // Keep showing 0 if fetch fails
         }
       }
 
@@ -276,6 +281,11 @@
       loadStats();
       loadYesterdaysWinners();
       loadRecentArchives();
+
+      // Auto-refresh stats every 30 seconds
+      setInterval(() => {
+        loadStats();
+      }, 30000);
     </script>
   </body>
 </html>

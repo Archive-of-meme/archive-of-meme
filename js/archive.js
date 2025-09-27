@@ -34,13 +34,17 @@ function setupEventListeners() {
 
 async function loadArchives() {
     try {
-        // TODO: Fetch real archives from API
-        // const response = await fetch('/api/get-archives.php');
-        // const data = await response.json();
-        // allArchives = data.archives || [];
+        // Fetch real archives from API
+        const response = await fetch('/api/get-archives.php');
+        const data = await response.json();
 
-        // For now, use empty array
-        allArchives = sampleArchives;
+        if (data.success) {
+            allArchives = data.archives || [];
+        } else {
+            console.error('Archives API error:', data.error);
+            allArchives = [];
+        }
+
         filteredArchives = [...allArchives];
         renderArchives();
 

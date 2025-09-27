@@ -12,8 +12,8 @@ define('UPLOAD_URL', '/uploads/memes/');
 define('MAX_FILE_SIZE', 5 * 1024 * 1024); // 5MB
 define('ALLOWED_TYPES', ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']);
 
-define('USE_BLOCKCHAIN', false);
-define('ARCH_TOKEN_ADDRESS', 'DEMO_MODE');
+define('USE_BLOCKCHAIN', true);
+define('ARCH_TOKEN_ADDRESS', 'DmE9nZs4LfNCtMUHZWckstSHvHFCusBdGwjhqJuYpump');
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');

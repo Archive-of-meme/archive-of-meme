@@ -582,22 +582,43 @@
           return;
         }
 
-        // Here you would submit the vote to backend
-        console.log("Voting for:", memeId);
+        // Submit vote to backend
+        const voterWallet = localStorage.getItem('testWallet') || localStorage.getItem('walletAddress') || '';
 
-        // Update UI to show voted
-        const voteBtn = event.target;
-        voteBtn.textContent = "VOTED";
-        voteBtn.classList.add("voted");
-        voteBtn.disabled = true;
+        fetch('/api/vote.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            meme_id: memeId,
+            wallet: voterWallet
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Update UI to show voted
+            const voteBtn = event.target;
+            voteBtn.textContent = "VOTED";
+            voteBtn.classList.add("voted");
+            voteBtn.disabled = true;
 
-        // Update vote count (would come from backend)
-        const voteCount = voteBtn
-          .closest(".vote-info")
-          .querySelector(".vote-count-number");
-        voteCount.textContent = parseInt(voteCount.textContent) + 1;
+            // Update vote count with actual count from backend
+            const voteCount = voteBtn
+              .closest(".vote-info")
+              .querySelector(".vote-count-number");
+            voteCount.textContent = data.newVoteCount || (parseInt(voteCount.textContent) + 1);
 
-        showNotification("Vote submitted successfully!", "success");
+            showNotification("Vote submitted successfully!", "success");
+          } else {
+            showNotification(data.error || "Failed to submit vote", "error");
+          }
+        })
+        .catch(error => {
+          console.error("Vote submission error:", error);
+          showNotification("Failed to submit vote. Please try again.", "error");
+        });
 
         // Update leaderboard
         updateLeaderboard();
