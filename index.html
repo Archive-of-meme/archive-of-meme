@@ -182,15 +182,21 @@
         if (utcHour < 16) {
           phase = 'Nomination Phase';
           nextPhaseHour = 16;
-          phaseProgress = (utcHour * 60 + utcMinute) / (16 * 60) * 100;
+          // Progress bar: shows time remaining (100% at start, 0% when phase ends)
+          const nominationElapsed = utcHour * 60 + utcMinute;
+          phaseProgress = 100 - (nominationElapsed / (16 * 60) * 100);
         } else if (utcHour < 20) {
           phase = 'Voting Phase';
           nextPhaseHour = 20;
-          phaseProgress = ((utcHour - 16) * 60 + utcMinute) / (4 * 60) * 100;
+          // Progress bar: shows time remaining in voting phase
+          const votingElapsed = (utcHour - 16) * 60 + utcMinute;
+          phaseProgress = 100 - (votingElapsed / (4 * 60) * 100);
         } else {
           phase = 'Archive Phase';
           nextPhaseHour = 24;
-          phaseProgress = ((utcHour - 20) * 60 + utcMinute) / (4 * 60) * 100;
+          // Progress bar: shows time remaining in archive phase
+          const archiveElapsed = (utcHour - 20) * 60 + utcMinute;
+          phaseProgress = 100 - (archiveElapsed / (4 * 60) * 100);
         }
 
         // Update phase text

@@ -710,13 +710,16 @@
 
         if (utcHour < 16) {
           // NOMINATION TIME!
-          phase = '✅ Nomination Phase Active';
+          phase = 'Nomination Phase Active';
           // Calculate time remaining to nominate
           const hoursRemaining = 15 - utcHour;
           const minutesRemaining = 59 - utcMinute;
           const secondsRemaining = 59 - utcSecond;
           timeString = `${hoursRemaining.toString().padStart(2, '0')}:${minutesRemaining.toString().padStart(2, '0')}:${secondsRemaining.toString().padStart(2, '0')} remaining to nominate`;
-          phaseProgress = (utcHour * 60 + utcMinute) / (16 * 60) * 100;
+          // Progress bar: shows time remaining (100% at start, 0% when phase ends)
+          const timeElapsed = utcHour * 60 + utcMinute;
+          const totalMinutes = 16 * 60;
+          phaseProgress = 100 - (timeElapsed / totalMinutes * 100);
         } else if (utcHour < 20) {
           // Nominations closed, voting active
           phase = 'Nominations Closed';

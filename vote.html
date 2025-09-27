@@ -759,16 +759,19 @@
           const minutesUntil = 59 - utcMinute;
           const secondsUntil = 59 - utcSecond;
           timeString = `Voting begins in ${hoursUntil.toString().padStart(2, '0')}:${minutesUntil.toString().padStart(2, '0')}:${secondsUntil.toString().padStart(2, '0')}`;
-          phaseProgress = 0;
+          phaseProgress = 0; // Empty bar when not active
         } else if (utcHour < 20) {
           // VOTING TIME!
-          phase = '🗳️ Voting Phase Active';
+          phase = 'Voting Phase Active';
           // Calculate time remaining to vote
           const hoursRemaining = 19 - utcHour;
           const minutesRemaining = 59 - utcMinute;
           const secondsRemaining = 59 - utcSecond;
           timeString = `${hoursRemaining.toString().padStart(2, '0')}:${minutesRemaining.toString().padStart(2, '0')}:${secondsRemaining.toString().padStart(2, '0')} remaining to vote`;
-          phaseProgress = ((utcHour - 16) * 60 + utcMinute) / (4 * 60) * 100;
+          // Progress bar: shows time remaining (100% at start of voting, 0% when voting ends)
+          const timeElapsedSince16 = (utcHour - 16) * 60 + utcMinute;
+          const totalVotingMinutes = 4 * 60;
+          phaseProgress = 100 - (timeElapsedSince16 / totalVotingMinutes * 100);
         } else {
           // Voting ended
           phase = 'Voting Ended';
@@ -777,7 +780,7 @@
           const minutesUntil = 59 - utcMinute;
           const secondsUntil = 59 - utcSecond;
           timeString = `Next voting in ${hoursUntil.toString().padStart(2, '0')}:${minutesUntil.toString().padStart(2, '0')}:${secondsUntil.toString().padStart(2, '0')}`;
-          phaseProgress = 100;
+          phaseProgress = 0; // Empty bar when not active
         }
 
         document.getElementById('currentPhase').textContent = phase;
